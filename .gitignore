@@ -45,3 +45,6 @@ node_modules/
 
 # Ignore environment-specific settings
 .env
+
+# Ignore Visual Studio 2022 cache/options directory
+.vs/

@@ -1,8 +1,26 @@
-@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@font-face {
+    font-family: 'Noto Serif';
+    src: url('Fonts/NotoSerif-Regular.ttf') format('truetype');
+    /* Add other font formats as necessary */
+    font-weight: 400; /* Regular */
 }
+
+@font-face {
+    font-family: 'Noto Serif';
+    src: url('Fonts/NotoSerif-Bold.ttf') format('truetype');
+    /* Add other font formats as necessary */
+    font-weight: 700; /* Bold */
+}
+html, body { 
+    background-color: #E4EEf2;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 
 h1:focus {
     outline: none;
