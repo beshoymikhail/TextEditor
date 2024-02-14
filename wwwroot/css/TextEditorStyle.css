@@ -1,8 +1,14 @@
-﻿.btn {
+﻿.btn-start-page {
     width: 280px;
     height: 146px;
     flex-shrink: 0;
     border-radius: 20px;
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly ;
+    --bs-btn-border-width:none;
 }
 
 .btn-newFile {
@@ -28,4 +34,46 @@
     flex-shrink: 0;
     border-radius: 15px;
     background: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-upload-file {
+    width: 316px;
+    height: 158px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    border:none;
+}
+.text-blue {
+    color: #009DE0;
+}
+.span-text-btn {
+    text-align: center;
+    font-family: "Noto Serif";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.btn-circle {
+    border-radius: 20px;
+    border: 1px solid #009DE0;
+    height: 30px;
+}
+.background-blue {
+    background-color: #009DE0;
+}
+input::placeholder {
+    color: #707070;
+    font-family: "Noto Serif";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
