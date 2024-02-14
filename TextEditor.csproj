@@ -15,5 +15,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Components\" />
+	  <Folder Include="Model\" />
 	</ItemGroup>
 </Project>
