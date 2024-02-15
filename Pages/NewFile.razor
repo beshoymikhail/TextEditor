@@ -35,44 +35,26 @@
 
             <div class="row mt-2">
                 <div class="col-lg-4 mt-2 justify-content-center d-flex">
-                    <button class="btn-upload-file">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                <path d="M2 18H34" stroke="#009DE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M18 34V2" stroke="#009DE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <span class="span-text-btn text-blue">
-                            Upload Auxiliary File
-                        </span>
-                    </button>
-                    <input type="file" @ hidden/>
+                    @if (!IsFileUploaded)
+                    {
+                        <UploadFileComponent fileName="Auxiliary"></UploadFileComponent>
+
+                    }
+                    else
+                    {
+                        <UploadedFileComponent></UploadedFileComponent>
+                    }
+                    <input type="file" id="auxiliary-file" hidden />
                 </div>
                 <div class="col-lg-4 mt-2  justify-content-center d-flex">
-                    <button class="btn-upload-file">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                <path d="M2 18H34" stroke="#009DE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M18 34V2" stroke="#009DE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <span class="span-text-btn text-blue ">
-                            Upload Implementation File
-                        </span>
-                    </button>
+                    <UploadFileComponent fileName="Implementation"></UploadFileComponent>
+                    <input type="file" id="implementation-file" hidden />
                 </div>
                 <div class="col-lg-4 mt-2 justify-content-center d-flex">
-                    <button class="btn-upload-file">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                <path d="M2 18H34" stroke="#009DE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M18 34V2" stroke="#009DE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <span class="span-text-btn text-blue ">
-                            Upload Specification File
-                        </span>
-                    </button>
+                    <div>
+                        <UploadFileComponent fileName="Specification"></UploadFileComponent>
+                    </div>
+                    <input type="file" id="specification-file" hidden />
                 </div>
             </div>
         </div>
@@ -84,5 +66,3 @@
         <button class="background-blue btn-circle px-3 text-white text-decoration-none" disabled> <span class="py-1">Create Project</span>  </button>
     </div>
 </div>
-
-<script src="~/javascript/newfile.js"></script>

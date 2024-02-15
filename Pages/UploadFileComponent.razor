@@ -1,0 +1,15 @@
+﻿<div class="btn-upload-file" id="upload-auxiliary-file">
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path d="M2 18H34" stroke="#009DE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M18 34V2" stroke="#009DE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </div>
+    <span class="span-text-btn text-blue">
+        Upload @fileName File
+    </span>
+</div>
+@code {
+    [Parameter]
+    public string fileName { get; set; }
+}

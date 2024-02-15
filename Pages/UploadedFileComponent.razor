@@ -1,0 +1,39 @@
+﻿
+<div class="btn-uploaded-file container-fluid" id="upload-auxiliary-file">
+    <div class="row">
+        <div class="row col-10">
+            <div class="col-1"></div>
+            <div class="col-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="48" viewBox="0 0 34 48" fill="none">
+                    <path d="M24.0253 48H0V0H34V37.6685L24.0253 48Z" fill="#009DE0" />
+                    <path d="M24.0254 37.6686H34.0001L24.0254 48V37.6686Z" fill="#30D5C8" />
+                    <path d="M18.63 8.85938H5.33044V11.7414H18.63V8.85938Z" fill="#30D5C8" />
+                    <path d="M29.4079 15.377H5.33044V18.2589H29.4079V15.377Z" fill="#30D5C8" />
+                    <path d="M29.4079 21.8945H5.33044V24.7765H29.4079V21.8945Z" fill="#30D5C8" />
+                    <path d="M24.1637 28.4121H5.33044V31.2941H24.1637V28.4121Z" fill="#30D5C8" />
+                </svg>
+            </div>
+            <div class="col-4">
+                <div class="text-bold">@FileName</div>
+                <p class="text-small mt-1">Uploaded</p>
+            </div>
+        </div>
+        <div class="col-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 0C5.388 0 0 5.388 0 12C0 18.612 5.388 24 12 24C18.612 24 24 18.612 24 12C24 5.388 18.612 0 12 0ZM17.736 9.24L10.932 16.044C10.764 16.212 10.536 16.308 10.296 16.308C10.056 16.308 9.828 16.212 9.66 16.044L6.264 12.648C5.916 12.3 5.916 11.724 6.264 11.376C6.612 11.028 7.188 11.028 7.536 11.376L10.296 14.136L16.464 7.968C16.812 7.62 17.388 7.62 17.736 7.968C18.084 8.316 18.084 8.88 17.736 9.24Z" fill="#239EAB" />
+            </svg>
+
+        </div>
+    </div>
+
+    <div class="align-self-center">
+        <button class="btn-replace  btn-circle-size " href="/"> Replace </button>
+        <button class="btn-delete btn-circle-size " href="/"> Delete </button>
+    </div>
+
+</div>
+<input type="file" id="auxiliary-file" hidden />
+@code {
+    [Parameter]
+    public string FileName{ get; set; }
+}
