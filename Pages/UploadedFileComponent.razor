@@ -1,5 +1,5 @@
 ﻿
-<div class="btn-uploaded-file container-fluid" id="upload-auxiliary-file">
+<div class="btn-uploaded-file container-fluid">
     <div class="row">
         <div class="row col-10">
             <div class="col-1"></div>
@@ -27,13 +27,15 @@
     </div>
 
     <div class="align-self-center">
-        <button class="btn-replace  btn-circle-size " href="/"> Replace </button>
-        <button class="btn-delete btn-circle-size " href="/"> Delete </button>
+        <button class="btn-replace  btn-circle-size" onclick='ReplaceFile("@InputId")'> Replace </button>
+        <button class="btn-delete btn-circle-size" onclick='DeleteFile("@InputId")'> Delete </button>
     </div>
 
 </div>
-<input type="file" id="auxiliary-file" hidden />
 @code {
     [Parameter]
     public string FileName{ get; set; }
+     [Parameter]
+    public string InputId{ get; set; }
+
 }

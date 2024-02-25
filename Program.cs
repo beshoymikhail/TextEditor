@@ -2,21 +2,25 @@ using ElectronNET.API;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using TextEditor.Data;
+using TextEditor.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<IFileServices,FileServices>();
 builder.Services.AddElectron();
 
 builder.WebHost.UseElectron(args);
 if (HybridSupport.IsElectronActive)
 {
     // Open the Electron-Window here
-    Task.Run(async () => {
+    _ = Task.Run(async () =>
+    {
         var window = await Electron.WindowManager.CreateWindowAsync();
-        window.OnClosed += () => {
+        window.OnClosed += () =>
+        {
             Electron.App.Quit();
         };
     });

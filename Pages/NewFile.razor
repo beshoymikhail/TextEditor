@@ -1,68 +1,83 @@
 ﻿@page "/NewFile"
-
+@inject NavigationManager NavigationManager
 <PageTitle>New File</PageTitle>
-<div class="page d-flex justify-content-center">
-    <div class="text-center">
-
-        <div class="m-3">
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
-                    <rect width="80" height="80" rx="15" fill="#F5F5F5" />
-                    <path d="M61.6747 65.9426L61.6887 19.4802L51.7977 13.4206L23.348 13.5517L23.3241 66.1176L61.6747 65.9426Z" fill="#009DE0" />
-                    <path d="M61.6888 19.4803L51.7977 13.4207L54.9993 21.4905L61.6888 19.4803Z" fill="#30D5C8" />
-                    <path d="M24.3092 70C29.4073 70 33.5226 65.9514 33.5009 60.9573C33.4793 55.9631 29.3289 51.9146 24.2309 51.9146C19.1328 51.9146 15.0175 55.9631 15.0392 60.9573C15.0608 65.9514 19.2112 70 24.3092 70Z" fill="#292D32" />
-                    <path d="M29.0293 59.7018L25.5286 59.7266L25.5217 56.2941L23.0149 56.3062L23.0155 59.7395L19.5211 59.7635L19.5203 62.2214L23.0218 62.2029L23.0216 65.6299L25.5347 65.617L25.5278 62.1845L29.0293 62.166L29.0293 59.7018Z" fill="white" />
-                    <path d="M55.6827 29.6807C55.6841 31.3893 54.2668 32.7812 52.5238 32.7912L31.7714 32.8877C30.0284 32.8976 28.6156 31.5152 28.6142 29.8066C28.6127 28.098 30.0301 26.7061 31.7731 26.6962L52.5254 26.5997C54.2685 26.5897 55.6813 27.9721 55.6827 29.6807Z" fill="#30D5C8" />
-                    <path d="M49.4501 38.6675C49.4515 40.3761 48.0342 41.768 46.2912 41.778L31.7871 41.8441C30.044 41.8541 28.6312 40.4716 28.6298 38.763C28.6284 37.0544 30.0457 35.6625 31.7887 35.6526L46.2929 35.5864C48.0359 35.5765 49.4487 36.9589 49.4501 38.6675Z" fill="#30D5C8" />
-                </svg>
-            </div>
-        </div>
-
-        <h2>
-            Create a New File
-        </h2>
-        <p>Please Upload files related to your request</p>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 mt-2">
-                    <input type="text" class="form-control input-group" placeholder="Enter Folder Name" />
-                </div>
-                <div class="col-lg-6 mt-2">
-                    <input type="search" class="form-control input-group" placeholder="Folder Path" />
+<form @onsubmit="HandleCreateProjectBtn">
+    <div class="page d-flex justify-content-center">
+        <div class="text-center">
+            <div class="m-3">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+                        <rect width="80" height="80" rx="15" fill="#F5F5F5" />
+                        <path d="M61.6747 65.9426L61.6887 19.4802L51.7977 13.4206L23.348 13.5517L23.3241 66.1176L61.6747 65.9426Z" fill="#009DE0" />
+                        <path d="M61.6888 19.4803L51.7977 13.4207L54.9993 21.4905L61.6888 19.4803Z" fill="#30D5C8" />
+                        <path d="M24.3092 70C29.4073 70 33.5226 65.9514 33.5009 60.9573C33.4793 55.9631 29.3289 51.9146 24.2309 51.9146C19.1328 51.9146 15.0175 55.9631 15.0392 60.9573C15.0608 65.9514 19.2112 70 24.3092 70Z" fill="#292D32" />
+                        <path d="M29.0293 59.7018L25.5286 59.7266L25.5217 56.2941L23.0149 56.3062L23.0155 59.7395L19.5211 59.7635L19.5203 62.2214L23.0218 62.2029L23.0216 65.6299L25.5347 65.617L25.5278 62.1845L29.0293 62.166L29.0293 59.7018Z" fill="white" />
+                        <path d="M55.6827 29.6807C55.6841 31.3893 54.2668 32.7812 52.5238 32.7912L31.7714 32.8877C30.0284 32.8976 28.6156 31.5152 28.6142 29.8066C28.6127 28.098 30.0301 26.7061 31.7731 26.6962L52.5254 26.5997C54.2685 26.5897 55.6813 27.9721 55.6827 29.6807Z" fill="#30D5C8" />
+                        <path d="M49.4501 38.6675C49.4515 40.3761 48.0342 41.768 46.2912 41.778L31.7871 41.8441C30.044 41.8541 28.6312 40.4716 28.6298 38.763C28.6284 37.0544 30.0457 35.6625 31.7887 35.6526L46.2929 35.5864C48.0359 35.5765 49.4487 36.9589 49.4501 38.6675Z" fill="#30D5C8" />
+                    </svg>
                 </div>
             </div>
 
-            <div class="row mt-2">
-                <div class="col-lg-4 mt-2 justify-content-center d-flex">
-                    @if (!IsFileUploaded)
-                    {
-                        <UploadFileComponent fileName="Auxiliary"></UploadFileComponent>
-
-                    }
-                    else
-                    {
-                        <UploadedFileComponent></UploadedFileComponent>
-                    }
-                    <input type="file" id="auxiliary-file" hidden />
-                </div>
-                <div class="col-lg-4 mt-2  justify-content-center d-flex">
-                    <UploadFileComponent fileName="Implementation"></UploadFileComponent>
-                    <input type="file" id="implementation-file" hidden />
-                </div>
-                <div class="col-lg-4 mt-2 justify-content-center d-flex">
-                    <div>
-                        <UploadFileComponent fileName="Specification"></UploadFileComponent>
+            <h2>
+                Create a New File
+            </h2>
+            <p>Please Upload files related to your request</p>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 mt-2">
+                        <input type="text" class="form-control input-group" placeholder="Enter Folder Name" @bind=FolderName required/>
                     </div>
-                    <input type="file" id="specification-file" hidden />
+                    <div class="col-lg-6 mt-2">
+                        <input type="search" class="form-control input-group" placeholder="Folder Path" @bind=FolderPath required/>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-lg-4 mt-2 justify-content-center d-flex">
+                        @if (auxiliaryfile == null)
+                        {
+                            <UploadFileComponent fileName="Auxiliary" Id="upload-auxiliary-file" input_id="auxiliary-file"></UploadFileComponent>
+                        }
+                        else
+                        {
+                            <UploadedFileComponent FileName="@auxiliaryfile.Name" InputId="auxiliary-file"></UploadedFileComponent>
+                        }
+                        <InputFile id="auxiliary-file" hidden OnChange="HandleUploadAuxiliaryFile" />
+                    </div>
+                    <div class="col-lg-4 mt-2  justify-content-center d-flex">
+
+                        @if (implementationfile == null)
+                        {
+                            <UploadFileComponent fileName="Implementation" Id="upload-implementation-file" input_id="implementation-file"></UploadFileComponent>
+
+                        }
+                        else
+                        {
+                            <UploadedFileComponent FileName="@implementationfile.Name" InputId="implementation-file"></UploadedFileComponent>
+                        }
+                        <InputFile id="implementation-file" hidden OnChange="HandleUploadImplementationFile" />
+                    </div>
+                    <div class="col-lg-4 mt-2 justify-content-center d-flex">
+                        @if (specificationfile == null)
+                        {
+                            <UploadFileComponent fileName="Specification" Id="upload-specification-file" input_id="specification-file"></UploadFileComponent>
+
+                        }
+                        else
+                        {
+                            <UploadedFileComponent FileName="@specificationfile.Name" InputId="specification-file"></UploadedFileComponent>
+                        }
+                        <InputFile id="specification-file" hidden OnChange="HandleUploadSpecificationFile" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row text-end">
-    <div class=" my-4">
-        <a class="btn-circle me-2 px-2 py-1 text-blue text-decoration-none" href="/"> Cancel </a>
-        <button class="background-blue btn-circle px-3 text-white text-decoration-none" disabled> <span class="py-1">Create Project</span>  </button>
+    <div class="row text-end">
+        <div class=" my-4">
+            <a class="btn-circle me-2 px-2 py-1 text-blue text-decoration-none" href="/"> Cancel </a>
+            <button class="background-blue btn-circle px-3 text-white text-decoration-none" type="submit"> <span class="py-1">Create Project</span>  </button>
+        </div>
     </div>
-</div>
+</form>
+
