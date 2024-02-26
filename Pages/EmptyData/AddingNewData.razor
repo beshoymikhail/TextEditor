@@ -1,0 +1,85 @@
+﻿@page "/AddNewData"
+<div class="container-fluid">
+    <div class="row-addmewData-header">
+        <a href="EmptyData" class="text-decoration-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M20 26.56L11.3066 17.8667C10.28 16.84 10.28 15.16 11.3066 14.1333L20 5.44" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="text-black fs-6"> Back to Project “Testing”</span>
+        </a>
+        <div>
+            <button class="btn-circle me-2 px-3 py-1 text-blue text-decoration-none">
+                Discard Changes
+            </button>
+            <button class="background-blue btn-circle px-3 text-white text-decoration-none" id="beshoy">
+                Save and Add Functions
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 navigation-menu navigation-menu-height ms-4">
+            <button class="btn-addnewdata my-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <span class="text-white">Add New</span>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <path d="M5.25 10.5H15.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M10.5 15.75V5.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </button>
+        </div>
+        <div class="col row mt-2 AddingDataBody me-4">
+            <div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-xl fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn-close-modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="16" fill="#E2E2E2" />
+                        <path d="M21.4 11.8001L11.8 21.4C11.472 21.728 10.928 21.728 10.6 21.4C10.272 21.072 10.272 20.528 10.6 20.2L20.2 10.6001C20.528 10.2721 21.072 10.2721 21.4 10.6001C21.728 10.9281 21.728 11.4721 21.4 11.8001Z" fill="#4F4F4F" />
+                        <path d="M21.4 21.4C21.072 21.728 20.528 21.728 20.2 21.4L10.6 11.8C10.272 11.472 10.272 10.928 10.6 10.6C10.928 10.272 11.472 10.272 11.8 10.6L21.4 20.2C21.728 20.528 21.728 21.072 21.4 21.4Z" fill="#4F4F4F" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item col-4">
+                        <a class="nav-link active text-center"  role="tab" data-bs-toggle="pill" aria-selected="true">Active</a>
+                    </li>
+                    <li class="nav-item col-4">
+                        <a class="nav-link text-center"  data-bs-toggle="pill" role="tab" aria-selected="false">Link</a>
+                    </li>
+                    <li class="nav-item col-4">
+                        <a class="nav-link text-center" data-bs-toggle="pill" role="tab" aria-selected="false">Link</a>
+                    </li>
+                </ul>
+               
+                <div class="row mt-3">
+                    <div class="col-2 function-card-list">
+                    </div>
+                    <div class="col-2 function-card-list">
+                    </div>
+                    <div class="col-2 function-card-list">
+                    </div>
+                    <div class="col-2 function-card-list">
+                    </div>
+                    <div class="col-2 function-card-list">
+                    </div>
+                </div>
+                <div class="row function-body m-2">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

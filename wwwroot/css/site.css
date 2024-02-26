@@ -15,7 +15,6 @@
 html, body, main {
     font-family: "Noto Serif";
     background-color: #E4EEf2;
-    height: 100%;
 }
 
 @media screen and (min-width: 1024px) {
@@ -26,6 +25,7 @@ html, body, main {
         align-content: space-around;
         flex-wrap: wrap;
         justify-content: center;
+        height:100vh;
     }
 
     

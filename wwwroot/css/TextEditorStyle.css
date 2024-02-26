@@ -142,7 +142,10 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem !important;
-    margin-left: 0.5rem !important;
+    
+}
+.navigation-menu-height {
+    height: 87vh;
 }
 
 .btn-emptypage {
@@ -198,3 +201,78 @@ input::placeholder {
     font-weight: 500;
     line-height: 25px; /* 178.571% */
 }
+.btn-addnewdata {
+    height: 65px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #009DE0 -13.24%, #30D5C8 111.03%);
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:15px;
+}
+.AddingDataBody {
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem !important;
+    margin-left: 1.5rem !important;
+}
+
+.row-addmewData-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 1.5rem 1rem 1.5rem;
+}
+.modal-header{
+    border-bottom:none;
+}
+.btn-close{
+
+}
+.btn-close-modal {
+    border: none;
+    background: inherit;
+}
+.modal-body {
+    background: #F5F5F5;
+    padding:0;
+}
+.function-card-list {
+    height: 230px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    margin-left: 1.9rem !important;
+}
+.function-body {
+    height: 210px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+}
+.nav.nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: white;
+}
+.nav-link {
+    color: #707070;
+}
+.nav-tabs .nav-item .nav-link.active {
+    background-color: #F5F5F5;
+    color: #009DE0;
+}
+/* Change this to the desired background color */
+.nav-tabs {
+    --bs-nav-tabs-border-width: none;
+    --bs-nav-tabs--background-color: #F5F5F5;
+}
+    .nav-tabs .nav-link {
+        border-top-right-radius:inherit;
+    }
