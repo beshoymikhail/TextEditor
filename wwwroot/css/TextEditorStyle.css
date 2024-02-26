@@ -7,19 +7,22 @@
     align-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-evenly ;
-    --bs-btn-border-width:none;
+    justify-content: space-evenly;
+    --bs-btn-border-width: none;
 }
 
 .btn-newFile {
     background: linear-gradient(90deg, #0974F1 -6.79%, #9FCCFA 107.5%);
 }
+
 .btn-openFile {
     background: linear-gradient(90deg, #32C4C0 -7.86%, #8DE9D5 107.5%);
 }
+
 .btn-learnmore {
     background: linear-gradient(90deg, #239EAB -6.07%, #74DEEE 105.54%);
 }
+
 .btn-text {
     color: #FFF;
     font-family: "Noto Serif";
@@ -28,6 +31,7 @@
     font-weight: 600;
     line-height: normal;
 }
+
 .btn-icon-start {
     width: 44px;
     height: 44px;
@@ -38,6 +42,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .btn-upload-file {
     width: 316px;
     height: 158px;
@@ -48,11 +53,13 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    border:none;
+    border: none;
 }
+
 .text-blue {
     color: #009DE0;
 }
+
 .span-text-btn {
     text-align: center;
     font-family: "Noto Serif";
@@ -61,14 +68,17 @@
     font-weight: 600;
     line-height: normal;
 }
+
 .btn-circle {
     border-radius: 20px;
     border: 1px solid #009DE0;
     height: 30px;
 }
+
 .background-blue {
     background-color: #009DE0;
 }
+
 input::placeholder {
     color: #707070;
     font-family: "Noto Serif";
@@ -88,6 +98,7 @@ input::placeholder {
     flex-direction: column;
     justify-content: space-evenly;
 }
+
 .btn-circle-size {
     width: 128px;
     height: 32px;
@@ -105,6 +116,7 @@ input::placeholder {
     border: 1px solid #FF6963;
     color: #FF6963;
 }
+
 .text-bold {
     color: #292D32;
     font-family: "Noto Serif";
@@ -113,6 +125,7 @@ input::placeholder {
     font-weight: 600;
     line-height: normal;
 }
+
 .text-small {
     color: #292D32;
     font-family: "Noto Serif";
@@ -120,4 +133,68 @@ input::placeholder {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+.navigation-menu {
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem !important;
+    margin-left: 0.5rem !important;
+}
+
+.btn-emptypage {
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #F5F5F5;
+    border: none;
+}
+
+.DataComponentBig {
+    height: 203px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    padding:14px;
+}
+
+.DataComponentSmall {
+    height: 150px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    padding: 14px;
+}
+.TitleDataComponet {
+    display: flex;
+    justify-content: space-between;
+}
+.btn-add-data{
+    border:none;
+}
+.file-card-emptypage {
+    height: 140px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    padding: 14px;
+}
+.col-emptyfile-3 {
+    flex: 0 0 auto;
+    width: 24%;
+    margin-inline: auto;
+}
+.source-file {
+    color: #A5A5A5;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px; /* 178.571% */
 }

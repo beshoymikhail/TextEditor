@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Newtonsoft.Json.Linq;
 using TextEditor.Services;
 
-namespace TextEditor.Pages
+namespace TextEditor.Pages.NewFile
 {
     public partial class NewFile
     {
@@ -33,14 +32,14 @@ namespace TextEditor.Pages
         }
         private void HandleCreateProjectBtn()
         {
-            if (IsEnabled && !string.IsNullOrEmpty(FolderName) && !string.IsNullOrEmpty(FolderPath))
-            {
-                var foldername = Path.Combine(FolderPath, FolderName);
-                fileServices.CopyFileToFolder(auxiliaryfile, foldername);
-                fileServices.CopyFileToFolder(implementationfile, foldername);
-                fileServices.CopyFileToFolder(specificationfile, foldername);
-            }
-
+            //if (IsEnabled && !string.IsNullOrEmpty(FolderName) && !string.IsNullOrEmpty(FolderPath))
+            //{
+            //    var foldername = Path.Combine(FolderPath, FolderName);
+            //    fileServices.CopyFileToFolder(auxiliaryfile, foldername);
+            //    fileServices.CopyFileToFolder(implementationfile, foldername);
+            //    fileServices.CopyFileToFolder(specificationfile, foldername);
+            //}
+            NavigationManager.NavigateTo("/EmptyData");
         }
     }
 }

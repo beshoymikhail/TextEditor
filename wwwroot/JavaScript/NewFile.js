@@ -5,8 +5,7 @@
 function ReplaceFile(InputId) {
     document.getElementById(InputId).click();
 }
-}
+
 function DeleteFile(InputId) {
     document.getElementById(InputId).DeleteFile();
-}
 }
