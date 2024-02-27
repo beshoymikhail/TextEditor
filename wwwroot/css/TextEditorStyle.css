@@ -72,7 +72,6 @@
 .btn-circle {
     border-radius: 20px;
     border: 1px solid #009DE0;
-    height: 30px;
 }
 
 .background-blue {
@@ -142,10 +141,9 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem !important;
-    
-}
-.navigation-menu-height {
-    height: 87vh;
+    height:98vh;
+    padding:1rem;
+
 }
 
 .btn-emptypage {
@@ -161,19 +159,21 @@ input::placeholder {
     flex-shrink: 0;
     border-radius: 20px;
     background: #FFF;
-    margin-top: 0.5rem !important;
+    margin-top: 1rem !important;
     margin-bottom: 0.5rem !important;
-    padding:14px;
+    padding: 14px;
+    overflow-y: auto;
 }
 
 .DataComponentSmall {
-    height: 150px;
+    height: 148px;
     flex-shrink: 0;
     border-radius: 20px;
     background: #FFF;
-    margin-top: 0.5rem !important;
+    margin-top: 1rem !important;
     margin-bottom: 0.5rem !important;
     padding: 14px;
+    overflow-y: auto;
 }
 .TitleDataComponet {
     display: flex;
@@ -210,7 +210,34 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:15px;
+    padding:10px;
+    width:100%
+}
+
+.btn-function-addnewdata-menue {
+    height: 65px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid #009DE0;
+    background: #F5F5F5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: 12px;
+}
+.btn-delete-all {
+    height: 65px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, rgba(228, 67, 61, 0.20) -13.24%, rgba(255, 105, 99, 0.20) 111.03%);
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%
 }
 .AddingDataBody {
     flex-shrink: 0;
@@ -242,11 +269,18 @@ input::placeholder {
     padding:0;
 }
 .function-card-list {
-    height: 230px;
+    height: 250px;
     flex-shrink: 0;
     border-radius: 10px;
     background: #FFF;
-    margin-left: 1.9rem !important;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: hidden;
+    width:19%;
 }
 .function-body {
     height: 210px;
@@ -276,3 +310,44 @@ input::placeholder {
     .nav-tabs .nav-link {
         border-top-right-radius:inherit;
     }
+.btn-choose-function {
+    border-radius: 10px;
+    background: #F5F5F5;
+    flex-shrink: 0;
+    border:none;
+    padding:0.5rem;
+    margin-top:0.75rem;
+}
+.EmptyData-row {
+    padding-right:0.3rem;
+    padding-left:0.3rem;
+}
+
+
+.function-choose-title {
+    color: #000;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.function-choose-file {
+    flex-shrink: 0;
+    border-radius: 50px;
+    background: rgba(0, 157, 224, 0.20);
+    padding:0.5rem 1rem;
+}
+
+.navigation-menu-addnew-data {
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    height: 87vh;
+    justify-content: space-between;
+}
+
+.btn-icon{
+    border:none;
+}

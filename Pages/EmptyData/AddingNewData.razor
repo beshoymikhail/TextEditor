@@ -11,22 +11,44 @@
             <button class="btn-circle me-2 px-3 py-1 text-blue text-decoration-none">
                 Discard Changes
             </button>
-            <button class="background-blue btn-circle px-3 text-white text-decoration-none" id="beshoy">
+            <button class="background-blue btn-circle px-3 py-1 text-white text-decoration-none" id="beshoy">
                 Save and Add Functions
             </button>
         </div>
     </div>
     <div class="row">
-        <div class="col-2 navigation-menu navigation-menu-height ms-4">
-            <button class="btn-addnewdata my-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                <span class="text-white">Add New</span>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                        <path d="M5.25 10.5H15.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M10.5 15.75V5.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+        <div class="col-2 navigation-menu-addnew-data ms-4">
+            <div class="mt-4">
+                <button class="btn-addnewdata " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <span class="text-white">Add New</span>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                            <path d="M5.25 10.5H15.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.5 15.75V5.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </button>
+                <div class="btn-function-addnewdata-menue" >
+                    <span >Function iterN</span>
+                    <button class="btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                            <path d="M18.4364 4.57625C17.0277 4.43625 15.6189 4.33125 14.2014 4.2525V4.24375L14.0089 3.10625C13.8777 2.30125 13.6852 1.09375 11.6377 1.09375H9.3452C7.30645 1.09375 7.11395 2.24875 6.97395 3.0975L6.7902 4.2175C5.97645 4.27 5.1627 4.3225 4.34895 4.40125L2.56395 4.57625C2.19645 4.61125 1.93395 4.935 1.96895 5.29375C2.00395 5.6525 2.31895 5.915 2.68645 5.88L4.47145 5.705C9.05645 5.25 13.6764 5.425 18.3139 5.88875C18.3402 5.88875 18.3577 5.88875 18.3839 5.88875C18.7164 5.88875 19.0052 5.635 19.0402 5.29375C19.0664 4.935 18.8039 4.61125 18.4364 4.57625Z" fill="#E4433D" />
+                            <path d="M16.8258 7.1225C16.6158 6.90375 16.327 6.78125 16.0295 6.78125H4.96954C4.67204 6.78125 4.37454 6.90375 4.17329 7.1225C3.97204 7.34125 3.85829 7.63875 3.87579 7.945L4.41829 16.9225C4.51454 18.2525 4.63704 19.915 7.69079 19.915H13.3083C16.362 19.915 16.4845 18.2613 16.5808 16.9225L17.1233 7.95375C17.1408 7.63875 17.027 7.34125 16.8258 7.1225ZM11.952 15.5313H9.03829C8.67954 15.5313 8.38204 15.2338 8.38204 14.875C8.38204 14.5163 8.67954 14.2188 9.03829 14.2188H11.952C12.3108 14.2188 12.6083 14.5163 12.6083 14.875C12.6083 15.2338 12.3108 15.5313 11.952 15.5313ZM12.687 12.0313H8.31204C7.95329 12.0313 7.65579 11.7338 7.65579 11.375C7.65579 11.0163 7.95329 10.7188 8.31204 10.7188H12.687C13.0458 10.7188 13.3433 11.0163 13.3433 11.375C13.3433 11.7338 13.0458 12.0313 12.687 12.0313Z" fill="#E4433D" />
+                        </svg>
+                    </button>
                 </div>
-            </button>
+            </div>
+            <div>
+                <button class="btn-delete-all mb-4" >
+                    <span class="text-danger">Delete All</span>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                            <path d="M18.4364 4.57625C17.0277 4.43625 15.6189 4.33125 14.2014 4.2525V4.24375L14.0089 3.10625C13.8777 2.30125 13.6852 1.09375 11.6377 1.09375H9.3452C7.30645 1.09375 7.11395 2.24875 6.97395 3.0975L6.7902 4.2175C5.97645 4.27 5.1627 4.3225 4.34895 4.40125L2.56395 4.57625C2.19645 4.61125 1.93395 4.935 1.96895 5.29375C2.00395 5.6525 2.31895 5.915 2.68645 5.88L4.47145 5.705C9.05645 5.25 13.6764 5.425 18.3139 5.88875C18.3402 5.88875 18.3577 5.88875 18.3839 5.88875C18.7164 5.88875 19.0052 5.635 19.0402 5.29375C19.0664 4.935 18.8039 4.61125 18.4364 4.57625Z" fill="#E4433D" />
+                            <path d="M16.8258 7.1225C16.6158 6.90375 16.327 6.78125 16.0295 6.78125H4.96954C4.67204 6.78125 4.37454 6.90375 4.17329 7.1225C3.97204 7.34125 3.85829 7.63875 3.87579 7.945L4.41829 16.9225C4.51454 18.2525 4.63704 19.915 7.69079 19.915H13.3083C16.362 19.915 16.4845 18.2613 16.5808 16.9225L17.1233 7.95375C17.1408 7.63875 17.027 7.34125 16.8258 7.1225ZM11.952 15.5313H9.03829C8.67954 15.5313 8.38204 15.2338 8.38204 14.875C8.38204 14.5163 8.67954 14.2188 9.03829 14.2188H11.952C12.3108 14.2188 12.6083 14.5163 12.6083 14.875C12.6083 15.2338 12.3108 15.5313 11.952 15.5313ZM12.687 12.0313H8.31204C7.95329 12.0313 7.65579 11.7338 7.65579 11.375C7.65579 11.0163 7.95329 10.7188 8.31204 10.7188H12.687C13.0458 10.7188 13.3433 11.0163 13.3433 11.375C13.3433 11.7338 13.0458 12.0313 12.687 12.0313Z" fill="#E4433D" />
+                        </svg>
+                    </div>
+                </button>
+            </div>
         </div>
         <div class="col row mt-2 AddingDataBody me-4">
             <div>
@@ -36,10 +58,10 @@
 </div>
 
 <div class="modal modal-xl fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Main Function</h5>
                 <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn-close-modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <rect width="32" height="32" rx="16" fill="#E2E2E2" />
@@ -51,35 +73,188 @@
             <div class="modal-body">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item col-4">
-                        <a class="nav-link active text-center"  role="tab" data-bs-toggle="pill" aria-selected="true">Active</a>
+                        <a class="nav-link active text-center" role="tab" data-bs-toggle="pill" aria-selected="true">Implementation</a>
                     </li>
                     <li class="nav-item col-4">
-                        <a class="nav-link text-center"  data-bs-toggle="pill" role="tab" aria-selected="false">Link</a>
+                        <a class="nav-link text-center" data-bs-toggle="pill" role="tab" aria-selected="false">Specification</a>
                     </li>
                     <li class="nav-item col-4">
-                        <a class="nav-link text-center" data-bs-toggle="pill" role="tab" aria-selected="false">Link</a>
+                        <a class="nav-link text-center" data-bs-toggle="pill" role="tab" aria-selected="false">Auxiliary</a>
                     </li>
                 </ul>
-               
-                <div class="row mt-3">
-                    <div class="col-2 function-card-list">
+
+                <div class="mt-3 d-flex justify-content-evenly">
+                    <div class=" function-card-list crad">
+                        <h5 class="card-title">Definitions</h5>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-2 function-card-list">
+                    <div class=" function-card-list crad">
+                        <h5 class="card-title">Definitions</h5>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-2 function-card-list">
+                    <div class=" function-card-list crad">
+                        <h5 class="card-title">Definitions</h5>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-2 function-card-list">
+                    <div class=" function-card-list crad">
+                        <h5 class="card-title">Program Definition</h5>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-2 function-card-list">
+                    <div class=" function-card-list crad">
+                        <h5 class="card-title">Program Fixpoint</h5>
+                        <div class="card-body">
+                            <button class="btn-choose-function">
+                                <span class="function-choose-title">Definition Bool_B_Code</span>
+                                <div class="function-choose-file text-blue">
+                                    SHA256_spec.v
+                                </div>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="row function-body m-2">
+                <div class="function-body m-2 p-4">
+                    <div class="d-flex justify-content-between">
+                        <h5>
+                            Function iterN
+                        </h5>
+                        <button class="background-blue btn-circle px-3 text-white py-1">Insert</button>
+                    </div>
+                    <hr />
+                    <div>
+                        <p class="text-break">
+                            Fixpoint split_w32 s := match s with | b1 :: (b2 :: (b3 :: (b4 :: s0))) => w32_to_N b1 b2 b3 b4 :: split_w32 s0 | _ => [::] end.
+                        </p>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
-
 @code {
 
 }
