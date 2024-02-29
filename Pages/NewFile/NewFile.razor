@@ -42,7 +42,7 @@
                         {
                             <UploadedFileComponent FileName="@auxiliaryfile.Name" InputId="auxiliary-file"></UploadedFileComponent>
                         }
-                        <InputFile id="auxiliary-file" hidden OnChange="HandleUploadAuxiliaryFile" />
+                        <InputFile id="auxiliary-file" hidden OnChange="HandleUploadAuxiliaryFile" accept=".v"/>
                     </div>
                     <div class="col-lg-4 mt-2  justify-content-center d-flex">
 
@@ -55,7 +55,7 @@
                         {
                             <UploadedFileComponent FileName="@implementationfile.Name" InputId="implementation-file"></UploadedFileComponent>
                         }
-                        <InputFile id="implementation-file" hidden OnChange="HandleUploadImplementationFile" />
+                        <InputFile id="implementation-file" hidden OnChange="HandleUploadImplementationFile" accept=".v" />
                     </div>
                     <div class="col-lg-4 mt-2 justify-content-center d-flex">
                         @if (specificationfile == null)
@@ -67,7 +67,7 @@
                         {
                             <UploadedFileComponent FileName="@specificationfile.Name" InputId="specification-file"></UploadedFileComponent>
                         }
-                        <InputFile id="specification-file" hidden OnChange="HandleUploadSpecificationFile" />
+                        <InputFile id="specification-file" hidden OnChange="HandleUploadSpecificationFile" accept=".v" />
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime jsRuntime
 
 <PageTitle>TextEditor</PageTitle>
 
@@ -6,3 +7,10 @@
     @Body
 </main>
 
+@code{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await jsRuntime.InvokeVoidAsync("renderjQueryComponents");
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

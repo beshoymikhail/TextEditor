@@ -52,8 +52,27 @@
         </div>
         <div class="col row mt-2 AddingDataBody me-4">
             <div>
+                <h6>A. Descriptive language, abstraction level 0: pure natural language</h6>
+                <input type="text" class="descriptivelanguage-input form-control" placeholder="Click here to add text" />
             </div>
-        </div>
+            <div class="mt-3">
+                <h6>B. Descriptive language, abstraction level 1: hybrid</h6>
+                <input type="text" class="descriptivelanguage-input form-control" placeholder="Click here to add text" />
+            </div>
+            <div class="my-3">
+                <h6>C. Descriptive language, abstraction level 2: mathematical language</h6>
+                <input type="text" class="descriptivelanguage-input form-control" placeholder="Click here to add text" />
+            </div>
+            <hr />
+            <div class="fs-6 fw-bold">
+                <span class="text-danger">Function</span>
+                iterN {T : Type} n (f : T -> T) x {wf N.lt n} :=
+                <br />
+                <span>
+                    if n is 0 then x else f (iterN (n - 1) f x).
+                </span>
+            </div>
+        </div>  
     </div>
 </div>
 
@@ -250,7 +269,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

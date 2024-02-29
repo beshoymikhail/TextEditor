@@ -9,6 +9,7 @@
   "environment": "Production",
   "build": {
     "appId": "com.TextEditor.app",
+    "icon": "./icon.ico",
     "productName": "TextEditor",
     "copyright": "Copyright © 2020",
     "buildVersion": "1.0.0",
@@ -31,5 +32,6 @@
       },
       "**/*"
     ]
-  }
+  },
+  "icon": "./icon.ico"
 }

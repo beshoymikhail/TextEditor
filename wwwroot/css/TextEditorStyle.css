@@ -179,6 +179,7 @@ input::placeholder {
 .TitleDataComponet {
     display: flex;
     justify-content: space-between;
+    margin-bottom:1rem;
 }
 
 .btn-add-data {
@@ -256,6 +257,7 @@ input::placeholder {
     margin-top: 0.5rem !important;
     margin-left: 1.5rem !important;
     overflow-y: auto;
+    padding:28px;
 }
 
 .row-addmewData-header {
@@ -279,6 +281,7 @@ input::placeholder {
 .modal-body {
     background: #F5F5F5;
     padding: 0;
+    border-radius: var(--bs-modal-border-radius);
 }
 
 .function-card-list {
@@ -388,4 +391,42 @@ input::placeholder {
 
 .btn-icon {
     border: none;
+    background-color: var(--bs-btn-bg);
 }
+.text-aboutdata {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    color: #A5A5A5;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px; /* 173.333% */
+}
+.inserted-function {
+    display: flex;
+    justify-content: space-between;
+}
+.function-name {
+    color: #707070;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom:12px;
+}
+.descriptivelanguage-input{
+    margin:0.5rem 0rem;
+    width:100%;
+    border:none;
+}
+    .descriptivelanguage-input placeholder {
+        color: #4F4F4F;
+        font-family: "Noto Serif";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+    .descriptivelanguage-input:focus {
+        box-shadow:none;
+    }

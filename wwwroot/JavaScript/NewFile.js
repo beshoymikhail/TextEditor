@@ -9,9 +9,10 @@ function ReplaceFile(InputId) {
 function DeleteFile(InputId) {
     document.getElementById(InputId).DeleteFile();
 }
-$(document).ready(function () {
-    $('.nav-link').on('click', function () {
-        $('.nav-link').removeClass('active');
-        $(this).addClass('active');
-    });
-})
+
+function renderjQueryComponents() {
+    $("#btn-open-existing-file").on('click', function () {''
+
+        $("#open-existing-file").click()
+    })
+}

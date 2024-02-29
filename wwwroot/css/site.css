@@ -71,3 +71,9 @@ html, body, main {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+hr {
+    height: 2px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #E2E2E2;
+}
