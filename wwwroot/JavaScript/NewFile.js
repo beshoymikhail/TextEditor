@@ -15,4 +15,11 @@ function renderjQueryComponents() {
 
         $("#open-existing-file").click()
     })
+    $("#btn-upload-external-file").on('click', function () {
+        $("#external-file").click()
+    })
+    $("#btn-introduction").on('click', function () {
+        $("#input-introduction-text").focus()
+    })
+
 }

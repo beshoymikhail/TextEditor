@@ -179,7 +179,7 @@ input::placeholder {
 .TitleDataComponet {
     display: flex;
     justify-content: space-between;
-    margin-bottom:1rem;
+    margin-bottom:12px;
 }
 
 .btn-add-data {
@@ -393,15 +393,7 @@ input::placeholder {
     border: none;
     background-color: var(--bs-btn-bg);
 }
-.text-aboutdata {
-    word-wrap: break-word !important;
-    word-break: break-word !important;
-    color: #A5A5A5;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px; /* 173.333% */
-}
+
 .inserted-function {
     display: flex;
     justify-content: space-between;
@@ -414,10 +406,12 @@ input::placeholder {
     line-height: normal;
     margin-bottom:12px;
 }
-.descriptivelanguage-input{
-    margin:0.5rem 0rem;
-    width:100%;
-    border:none;
+.descriptivelanguage-input {
+    margin: 0.5rem 0rem;
+    width: 100%;
+    border: none;
+    padding:0;
+    
 }
     .descriptivelanguage-input placeholder {
         color: #4F4F4F;
@@ -428,5 +422,6 @@ input::placeholder {
         line-height: normal;
     }
     .descriptivelanguage-input:focus {
-        box-shadow:none;
+        box-shadow: none;
+        color: #A5A5A5;
     }
