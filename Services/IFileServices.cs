@@ -5,5 +5,6 @@ namespace TextEditor.Services
     public interface IFileServices
     {
          public Task CopyFileToFolder(IBrowserFile file, string folderPath);
+        public Task<string> ExtractFile(IBrowserFile file);
     }
 }

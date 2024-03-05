@@ -16,5 +16,16 @@ namespace TextEditor.Services
                 await file.OpenReadStream().CopyToAsync(fileStream);
             }
         }
+
+        public async Task<string> ExtractFile(IBrowserFile file)
+        {
+            string extractedfile = "";
+            var stream = file.OpenReadStream();
+            using (var reader = new StreamReader(stream))
+            {
+                extractedfile = await reader.ReadToEndAsync();
+            }
+            return  extractedfile;
+        }
     }
 }

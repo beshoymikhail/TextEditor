@@ -1,18 +1,22 @@
-﻿function UploadFile(input) {
+﻿class GreetingHelpers {
+    static dotNetHelper;
+
+    static setDotNetHelper(value) {
+        GreetingHelpers.dotNetHelper = value;
+    }
+}
+window.GreetingHelpers = GreetingHelpers;
+function UploadFile(input) {
     document.getElementById(input).click();
 }
 
 function ReplaceFile(InputId) {
-    document.getElementById(InputId).click();
+    $(`#${InputId}`).click()
 }
 
-function DeleteFile(InputId) {
-    document.getElementById(InputId).DeleteFile();
-}
 
 function renderjQueryComponents() {
-    $("#btn-open-existing-file").on('click', function () {''
-
+    $("#btn-open-existing-file").on('click', function () {
         $("#open-existing-file").click()
     })
     $("#btn-upload-external-file").on('click', function () {
@@ -23,3 +27,7 @@ function renderjQueryComponents() {
     })
 
 }
+window.handleButtonClick = (InputId) => {
+    $(`#${InputId}`).prop('value', '');
+    return GreetingHelpers.dotNetHelper.invokeMethodAsync('handledeleteaux', InputId);
+}; 
