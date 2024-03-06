@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
-using System.Reflection;
+using TextEditor.Model;
 using TextEditor.Services;
-using TextEditor.Shared;
 
 namespace TextEditor.Pages.NewFile
 {
@@ -32,9 +31,10 @@ namespace TextEditor.Pages.NewFile
                     dotNetHelper);
             }
         }
-        public void HandleUploadAuxiliaryFile(InputFileChangeEventArgs e)
+        public async void HandleUploadAuxiliaryFile(InputFileChangeEventArgs e)
         {
             uploaded_files["auxiliaryfile"] = e.File;
+            context.functions = await fileServices.ExtractFile(uploaded_files["auxiliaryfile"], SourceFile.Implementation);
         }
         private void HandleUploadImplementationFile(InputFileChangeEventArgs e)
         {
@@ -52,9 +52,9 @@ namespace TextEditor.Pages.NewFile
                 fileServices.CopyFileToFolder(uploaded_files["auxiliaryfile"], foldername);
                 fileServices.CopyFileToFolder(uploaded_files["implementationfile"], foldername);
                 fileServices.CopyFileToFolder(uploaded_files["specificationfile"], foldername);
-                var x = fileServices.ExtractFile(uploaded_files["auxiliaryfile"]);
-                var x2 = fileServices.ExtractFile(uploaded_files["implementationfile"]);
-                var x3 = fileServices.ExtractFile(uploaded_files["specificationfile"]);
+                
+                //var x2 = fileServices.ExtractFile(uploaded_files["implementationfile"]);
+                //var x3 = fileServices.ExtractFile(uploaded_files["specificationfile"]);
                 NavigationManager.NavigateTo("/EmptyData");
             }
         }

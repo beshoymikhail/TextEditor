@@ -1,4 +1,5 @@
 ﻿@page "/AddNewData"
+@inject Context context
 <div class="container-fluid">
     <div class="row-addmewData-header">
         <a href="EmptyData" class="text-decoration-none">
@@ -72,7 +73,7 @@
                     if n is 0 then x else f (iterN (n - 1) f x).
                 </span>
             </div>
-        </div>  
+        </div>
     </div>
 </div>
 
@@ -105,130 +106,27 @@
                     <div class=" function-card-list crad">
                         <h5 class="card-title">Definitions</h5>
                         <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
+                            @foreach (var fun in context.functions)
+                            {
+                                <button class="btn-choose-function text-break" @onclick="()=>function=fun">
+                                    <span class="function-choose-title">@fun.Name</span>
+                                    <div class="function-choose-file text-blue">
+                                        @fun.FileName
+                                    </div>
+                                </button>
+                            }
                         </div>
                     </div>
                     <div class=" function-card-list crad">
                         <h5 class="card-title">Fixpoint</h5>
                         <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
+                           
                         </div>
                     </div>
                     <div class=" function-card-list crad">
                         <h5 class="card-title">Function</h5>
                         <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn-choose-function">
-                                <span class="function-choose-title">Definition Bool_B_Code</span>
-                                <div class="function-choose-file text-blue">
-                                    SHA256_spec.v
-                                </div>
-                            </button>
+                           
                         </div>
                     </div>
                     <div class=" function-card-list crad">
@@ -255,23 +153,24 @@
                     </div>
                 </div>
                 <div class="function-body m-2 p-4">
-                    <div class="d-flex justify-content-between">
-                        <h5>
-                            Function iterN
-                        </h5>
-                        <button class="background-blue btn-circle px-3 text-white py-1">Insert</button>
-                    </div>
-                    <hr />
-                    <div>
-                        <p class="text-break">
-                            Fixpoint split_w32 s := match s with | b1 :: (b2 :: (b3 :: (b4 :: s0))) => w32_to_N b1 b2 b3 b4 :: split_w32 s0 | _ => [::] end.
-                        </p>
-                    </div>
+                    @if (function != null)
+                    {
+
+                        <div class="d-flex justify-content-between">
+                            <h5>
+                                @function.FunctionType.ToString() @function.Name
+                            </h5>
+                            <button class="background-blue btn-circle px-3 text-white py-1">Insert</button>
+                        </div>
+                        <hr />
+                        <div>
+                            <p class="text-break">
+                                @function.Description
+                            </p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
-@code {
-
-}
