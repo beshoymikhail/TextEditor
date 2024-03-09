@@ -9,4 +9,8 @@
         public FunctionType FunctionType { get; set; }
         public SourceFile sourceFile { get; set; }
     }
+    public class SelectedFunction : Function
+    {
+        public SectionType SectionType { get; set; }
+    }
 }

@@ -223,7 +223,7 @@ input::placeholder {
 }
 
 .btn-function-addnewdata-menue {
-    height: 65px;
+    min-height: 65px;
     flex-shrink: 0;
     border-radius: 10px;
     border: 1px solid #009DE0;

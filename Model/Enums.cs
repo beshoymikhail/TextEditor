@@ -12,4 +12,13 @@
         Specification,
         Aixiliary
     }
+    public enum SectionType
+    {
+        DataTypes,
+        AdmittedLemmas,
+        MainFunctions,
+        SupportFunctions,
+        AuxiliaryFunctions,
+        OtherRelevantFunctions
+    }
 }
