@@ -5,6 +5,7 @@
         Function,
         Lemma,
         Fixpoint,
+        Definition,
     }
     public enum SourceFile
     {

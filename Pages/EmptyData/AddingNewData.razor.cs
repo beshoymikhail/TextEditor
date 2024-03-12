@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using ElectronNET.API.Entities;
+using ElectronNET.API;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using SocketIOClient.Messages;
 using TextEditor.Model;
 
 namespace TextEditor.Pages.EmptyData
@@ -11,7 +14,8 @@ namespace TextEditor.Pages.EmptyData
         public Function selectfunctiontoinsert { get; set; }
         public Function shownFunctionInScreen { get; set; }
         public List<SelectedFunction> ChoosenFunctions { get; set; } = new List<SelectedFunction>() { };
-        public List<SelectedFunction> NewelectedFunction { get; set; }= new List<SelectedFunction>() { };
+        public List<SelectedFunction> NewelectedFunction { get; set; } = new List<SelectedFunction>() { };
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
@@ -54,6 +58,39 @@ namespace TextEditor.Pages.EmptyData
             ChoosenFunctions = context.SelectedFunctions.Where(sf => sf.SectionType == (SectionType)SectionType).ToList();
             NewelectedFunction.Clear();
             shownFunctionInScreen = ChoosenFunctions.FirstOrDefault();
+        }
+        async Task DeleteItemAsync(SelectedFunction selectedFunction)
+        {
+            var options = new MessageBoxOptions("Do you want delete this question?")
+            {
+                Type = MessageBoxType.question,
+                Buttons = new[] { "Yes", "No" },
+                Title = "Deleting Function"
+            };
+            var result = await Electron.Dialog.ShowMessageBoxAsync(options);
+            if (result.Response == 0)
+            {
+                ChoosenFunctions.Remove(selectedFunction);
+                NewelectedFunction.Remove(selectedFunction);
+                shownFunctionInScreen = null;
+            }
+        }
+        public async Task DeleteAllFunctionsAsync()
+        {
+            var options = new MessageBoxOptions("Do you want delete this question?")
+            {
+                Type = MessageBoxType.question,
+                Buttons = new[] { "Yes", "No" },
+                Title = "Deleting Function"
+            };
+            var result = await Electron.Dialog.ShowMessageBoxAsync(options);
+            if (result.Response == 0)
+            {
+                ChoosenFunctions?.Clear();
+                NewelectedFunction?.Clear();
+                context.SelectedFunctions.RemoveAll(sf => sf.SectionType == (SectionType)SectionType);
+                shownFunctionInScreen = null;
+            }
         }
     }
 }

@@ -26,44 +26,44 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6 mt-2">
-                        <input type="text" class="form-control input-group" placeholder="Enter Folder Name" @bind=FolderName required/>
+                        <input type="text" class="form-control input-group" placeholder="Enter Folder Name" @bind=context.FolderName required/>
                     </div>
                     <div class="col-lg-6 mt-2">
-                        <input type="search" class="form-control input-group" placeholder="Folder Path" @bind=FolderPath required/>
+                        <input type="search" class="form-control input-group" placeholder="Folder Path" @bind=context.FolderPath required/>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-lg-4 mt-2 justify-content-center d-flex">
-                        @if (uploaded_files["auxiliaryfile"] == null)
+                        @if (context.uploaded_files["auxiliaryfile"] == null)
                         {
                             <UploadFileComponent fileName="Auxiliary" Id="upload-auxiliary-file" input_id="auxiliaryfile"></UploadFileComponent>
                         }
                         else
                         {
-                            <UploadedFileComponent FileName="@uploaded_files["auxiliaryfile"].Name" InputId="auxiliaryfile"></UploadedFileComponent>
+                            <UploadedFileComponent FileName="@context.uploaded_files["auxiliaryfile"].Name" InputId="auxiliaryfile"></UploadedFileComponent>
                         }
                         <InputFile id="auxiliaryfile" hidden OnChange="HandleUploadAuxiliaryFile" accept=".v" required />
                     </div>
                     <div class="col-lg-4 mt-2  justify-content-center d-flex">
 
-                        @if (uploaded_files["implementationfile"] == null)
+                        @if (context.uploaded_files["implementationfile"] == null)
                         {
                             <UploadFileComponent fileName="Implementation" Id="upload-implementation-file" input_id="implementationfile"></UploadFileComponent>
                         }
                         else
                         {
-                            <UploadedFileComponent FileName="@uploaded_files["implementationfile"].Name" InputId="implementationfile"></UploadedFileComponent>
+                            <UploadedFileComponent FileName="@context.uploaded_files["implementationfile"].Name" InputId="implementationfile"></UploadedFileComponent>
                         }
                         <InputFile id="implementationfile" hidden OnChange="HandleUploadImplementationFile" accept=".v" required />
                     </div>
                     <div class="col-lg-4 mt-2 justify-content-center d-flex">
-                        @if (uploaded_files["specificationfile"] == null)
+                        @if (context.uploaded_files["specificationfile"] == null)
                         {
                             <UploadFileComponent fileName="Specification" Id="upload-specification-file" input_id="specificationfile"></UploadFileComponent>
                         }
                         else
                         {
-                            <UploadedFileComponent FileName="@uploaded_files["specificationfile"].Name" InputId="specificationfile"></UploadedFileComponent>
+                            <UploadedFileComponent FileName="@context.uploaded_files["specificationfile"].Name" InputId="specificationfile"></UploadedFileComponent>
                         }
                         <InputFile id="specificationfile" hidden OnChange="HandleUploadSpecificationFile" accept=".v" required/>
                     </div>

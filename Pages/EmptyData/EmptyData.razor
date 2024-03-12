@@ -53,7 +53,7 @@
                         </a>
                     </div>
                     <div class="source-file text-break">
-                        C:/Users/Developer/Desktop/testing/testing/fi_seq_utils.v
+                        @Path.Combine(context.FullFolderPath, /* context.uploaded_files["implementationfile"].Name */"")
                     </div>
                 </div>
                 <div class="col-emptyfile-3 file-card-emptypage">
@@ -68,7 +68,7 @@
                         </button>
                     </div>
                     <div class="source-file text-break">
-                        C:/Users/Developer/Desktop/testing/testing/N_sha256.v
+                        @Path.Combine(context.FullFolderPath, context.uploaded_files["auxiliaryfile"].Name)
                     </div>
                 </div>
                 <div class="col-emptyfile-3 file-card-emptypage">
@@ -83,7 +83,7 @@
                         </button>
                     </div>
                     <div class="source-file text-break">
-                        C:/Users/Developer/Desktop/testing/testing/SHA256_spec.v
+                        @Path.Combine(context.FullFolderPath,/*  context.uploaded_files["specificationfile"].Name */"")
                     </div>
                 </div>
                 <div class="col-emptyfile-3 file-card-emptypage">

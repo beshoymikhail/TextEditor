@@ -166,6 +166,7 @@ input::placeholder {
     overflow-y: auto;
 }
 
+
 .DataComponentSmall {
     height: 148px;
     flex-shrink: 0;
@@ -180,7 +181,9 @@ input::placeholder {
 .TitleDataComponet {
     display: flex;
     justify-content: space-between;
-    margin-bottom:12px;
+    margin-bottom: 12px;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
 }
 
 .btn-add-data {
