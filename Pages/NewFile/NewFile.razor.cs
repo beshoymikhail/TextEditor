@@ -23,6 +23,9 @@ namespace TextEditor.Pages.NewFile
         {
             if (firstRender)
             {
+                context.uploaded_files["auxiliaryfile"] = null;
+                context.uploaded_files["implementationfile"] = null;
+                context.uploaded_files["specificationfile"] = null;
                 dotNetHelper = DotNetObjectReference.Create(this);
                 await jsRuntime.InvokeVoidAsync("GreetingHelpers.setDotNetHelper",
                     dotNetHelper);
@@ -31,7 +34,6 @@ namespace TextEditor.Pages.NewFile
         public async void HandleUploadAuxiliaryFile(InputFileChangeEventArgs e)
         {
             context.uploaded_files["auxiliaryfile"] = e.File;
-            context.functions = await fileServices.ExtractFile(context.uploaded_files["auxiliaryfile"], SourceFile.Implementation);
         }
 
         private void HandleUploadImplementationFile(InputFileChangeEventArgs e)
@@ -42,16 +44,17 @@ namespace TextEditor.Pages.NewFile
         {
             context.uploaded_files["specificationfile"] = e.File;
         }
-        private void HandleCreateProjectBtn()
+        private async Task HandleCreateProjectBtnAsync()
         {
             if (IsEnabled && !string.IsNullOrEmpty(context.FolderName) && !string.IsNullOrEmpty(context.FolderPath))
             {
-                fileServices.CopyFileToFolder(context.uploaded_files["auxiliaryfile"],context.FullFolderPath);
+                fileServices.CopyFileToFolder(context.uploaded_files["auxiliaryfile"], context.FullFolderPath);
                 fileServices.CopyFileToFolder(context.uploaded_files["implementationfile"], context.FullFolderPath);
                 fileServices.CopyFileToFolder(context.uploaded_files["specificationfile"], context.FullFolderPath);
-                
-                //var x2 = fileServices.ExtractFile(uploaded_files["implementationfile"]);
-                //var x3 = fileServices.ExtractFile(uploaded_files["specificationfile"]);
+                context.SelectedFunctions = new List<SelectedFunction>();
+                context.functions= await fileServices.ExtractFile(context.uploaded_files["auxiliaryfile"], SourceFile.Auxiliary);
+                context.functions.AddRange(await fileServices.ExtractFile(context.uploaded_files["implementationfile"], SourceFile.Implementation));
+                context.functions.AddRange(await fileServices.ExtractFile(context.uploaded_files["specificationfile"], SourceFile.Specification));
                 NavigationManager.NavigateTo("/EmptyData");
             }
         }

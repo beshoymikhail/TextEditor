@@ -11,7 +11,7 @@
     {
         Implementation,
         Specification,
-        Aixiliary
+        Auxiliary
     }
     public enum SectionType
     {
