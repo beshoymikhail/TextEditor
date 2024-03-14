@@ -26,10 +26,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6 mt-2">
-                        <input type="text" class="form-control input-group" placeholder="Enter Folder Name" @bind=context.FolderName required/>
+                        <input type="text" class="form-control input-group" placeholder="Enter Folder Name" @bind=context.FolderName required />
                     </div>
-                    <div class="col-lg-6 mt-2">
-                        <input type="search" class="form-control input-group" placeholder="Folder Path" @bind=context.FolderPath required/>
+                    <div class="col-lg-6 mt-2 d-flex">
+                        <input type="search" class="form-control rounded-end-0" placeholder="Folder Path" @bind="context.FolderPath" required readonly />
+                        <button class="btn-select-path" type="button" @onclick="SelectDirectory">Select</button>
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -40,7 +41,7 @@
                         }
                         else
                         {
-                            <UploadedFileComponent FileName="@context.uploaded_files["auxiliaryfile"].Name" InputId="auxiliaryfile"></UploadedFileComponent>
+                            <UploadedFileComponent FileName="@context.uploaded_files["auxiliaryfile"].Name" InputId="auxiliaryfile" DeleteFileChange="HandleDeleteFile"></UploadedFileComponent>
                         }
                         <InputFile id="auxiliaryfile" hidden OnChange="HandleUploadAuxiliaryFile" accept=".v" required />
                     </div>
@@ -65,7 +66,7 @@
                         {
                             <UploadedFileComponent FileName="@context.uploaded_files["specificationfile"].Name" InputId="specificationfile"></UploadedFileComponent>
                         }
-                        <InputFile id="specificationfile" hidden OnChange="HandleUploadSpecificationFile" accept=".v" required/>
+                        <InputFile id="specificationfile" hidden OnChange="HandleUploadSpecificationFile" accept=".v" required />
                     </div>
                 </div>
             </div>

@@ -8,11 +8,6 @@ namespace TextEditor.Pages.EmptyData
     {
         private void HandleDeleteThisFile()
         {
-            context.uploaded_files["auxiliaryfile"] = null;
-            context.uploaded_files["implementationfile"] = null;
-            context.uploaded_files["specificationfile"] = null;
-            context.FolderName = "";
-            //context.FolderPath = "";
             NavigationManager.NavigateTo("/");
         }
         async Task DeleteItemAsync(SelectedFunction selectedFunction)

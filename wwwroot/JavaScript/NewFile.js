@@ -28,6 +28,6 @@ function renderjQueryComponents() {
 
 }
 window.handleButtonClick = (InputId) => {
-    $(`#${InputId}`).prop('value', '');
-    return GreetingHelpers.dotNetHelper.invokeMethodAsync('handledeleteaux', InputId);
+    console.log(InputId)
+    return GreetingHelpers.dotNetHelper.invokeMethodAsync('HandleDeleteFile', InputId);
 }; 

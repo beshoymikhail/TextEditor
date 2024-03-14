@@ -42,7 +42,15 @@
     justify-content: center;
     align-items: center;
 }
-
+.btn-select-path {
+    color: #009DE0;
+    background: white;
+    width: 18%;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
 .btn-upload-file {
     width: 316px;
     height: 158px;
@@ -300,7 +308,7 @@ input::placeholder {
     flex-wrap: nowrap;
     align-items: center;
     overflow-x: hidden;
-    width: 19%;
+    width: 24%;
 }
 
 .function-body {
@@ -430,3 +438,12 @@ input::placeholder {
         box-shadow: none;
         color: #A5A5A5;
     }
+.form-control:focus {
+    box-shadow: none;
+    outline: none;
+    border-color: transparent; /* Set border color to transparent */
+}
+
+.form-control:active {
+    outline: none; /* Remove outline when input is clicked */
+}

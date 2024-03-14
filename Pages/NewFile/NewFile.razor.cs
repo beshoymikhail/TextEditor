@@ -1,4 +1,5 @@
 ﻿using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
@@ -23,9 +24,6 @@ namespace TextEditor.Pages.NewFile
         {
             if (firstRender)
             {
-                context.uploaded_files["auxiliaryfile"] = null;
-                context.uploaded_files["implementationfile"] = null;
-                context.uploaded_files["specificationfile"] = null;
                 dotNetHelper = DotNetObjectReference.Create(this);
                 await jsRuntime.InvokeVoidAsync("GreetingHelpers.setDotNetHelper",
                     dotNetHelper);
@@ -59,11 +57,28 @@ namespace TextEditor.Pages.NewFile
             }
         }
         [JSInvokable]
-        public void handledeleteaux(string fileName)
+        async Task HandleDeleteFile(string fileName)
         {
             context.uploaded_files[fileName] = null;
             StateHasChanged();
         }
+        async Task SelectDirectory()
+        {
+            var options = new OpenDialogOptions
+            {
+                Properties = new OpenDialogProperty[] { OpenDialogProperty.openDirectory }
+            };
 
+            var mainWindow = Electron.WindowManager.BrowserWindows.First();
+            var result = await Electron.Dialog.ShowOpenDialogAsync(mainWindow, options);
+
+            if (result != null && result.ToList().Count > 0)
+            {
+                string selectedDirectory = result[0];
+                context.FolderPath = selectedDirectory;
+                // Handle the selected directory path here
+                Console.WriteLine("Selected Directory: " + selectedDirectory);
+            }
+        }
     }
 }

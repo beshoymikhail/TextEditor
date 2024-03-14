@@ -10,7 +10,7 @@ namespace TextEditor.Data
         public List<SelectedFunction> SelectedFunctions { get; set; } = new List<SelectedFunction>();
         public IDictionary<string, IBrowserFile> uploaded_files { get; set; } = new Dictionary<string, IBrowserFile>
            { { "auxiliaryfile",null }, { "implementationfile", null }, { "specificationfile", null } };
-        public string FolderPath { get; set; } = "D:\\TextEditor";
+        public string FolderPath { get; set; } = "";
         public string FolderName { get; set; } = "";
         public string FullFolderPath { 
             get

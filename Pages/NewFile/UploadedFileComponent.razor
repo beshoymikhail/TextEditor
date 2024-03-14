@@ -1,4 +1,4 @@
-﻿
+﻿@inject Context context
 <div class="btn-uploaded-file container-fluid">
     <div class="row">
         <div class="col row">
@@ -25,13 +25,18 @@
     </div>
     <div class="align-self-center">
         <button class="btn-replace btn-circle-size" onclick='ReplaceFile("@InputId")' type="button"> Replace </button>
-        <button class="btn-delete btn-circle-size" onclick='handleButtonClick("@InputId")' type="button"> Delete </button>
+        <button class="btn-delete btn-circle-size" onclick='@(()=>HandleDeleteFile())' type="button"> Delete </button>
     </div>
 </div>
 @code {
     [Parameter]
     public string FileName{ get; set; }
-     [Parameter]
+    [Parameter]
     public string InputId{ get; set; }
-
+    [Parameter]
+    public EventCallback<string> DeleteFileChange { get; set; }
+    async Task HandleDeleteFile()
+    {
+        await DeleteFileChange.InvokeAsync(InputId);
+    }
 }
