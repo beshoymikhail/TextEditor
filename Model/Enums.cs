@@ -8,7 +8,10 @@
         Definition,
         Inductive,
         Record,
-        Class
+        Class,
+        Program_Definition,
+        Program_Fixpoint,
+
     }
     public enum SourceFile
     {
