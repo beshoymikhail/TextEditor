@@ -308,7 +308,6 @@ input::placeholder {
     flex-wrap: nowrap;
     align-items: center;
     overflow-x: hidden;
-    width: 24%;
 }
 
 .function-body {

@@ -6,6 +6,9 @@
         Lemma,
         Fixpoint,
         Definition,
+        Inductive,
+        Record,
+        Class
     }
     public enum SourceFile
     {
