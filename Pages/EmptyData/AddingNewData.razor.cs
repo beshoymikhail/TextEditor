@@ -11,6 +11,8 @@ namespace TextEditor.Pages.EmptyData
     {
         [Parameter]
         public int SectionType { get; set; }
+        [Parameter]
+        public List<string> Panels{ get; set; }
         public Function selectfunctiontoinsert { get; set; }
         public Function shownFunctionInScreen { get; set; }
         public List<SelectedFunction> ChoosenFunctions { get; set; } = new List<SelectedFunction>() { };

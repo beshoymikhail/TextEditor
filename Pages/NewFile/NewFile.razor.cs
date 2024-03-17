@@ -32,6 +32,7 @@ namespace TextEditor.Pages.NewFile
         public async void HandleUploadAuxiliaryFile(InputFileChangeEventArgs e)
         {
             context.uploaded_files["auxiliaryfile"] = e.File;
+            context.functions = await fileServices.ExtractFile(context.uploaded_files["auxiliaryfile"], SourceFile.Auxiliary);
         }
 
         private void HandleUploadImplementationFile(InputFileChangeEventArgs e)
@@ -50,7 +51,7 @@ namespace TextEditor.Pages.NewFile
                 fileServices.CopyFileToFolder(context.uploaded_files["implementationfile"], context.FullFolderPath);
                 fileServices.CopyFileToFolder(context.uploaded_files["specificationfile"], context.FullFolderPath);
                 context.SelectedFunctions = new List<SelectedFunction>();
-                context.functions= await fileServices.ExtractFile(context.uploaded_files["auxiliaryfile"], SourceFile.Auxiliary);
+              //  context.functions= await fileServices.ExtractFile(context.uploaded_files["auxiliaryfile"], SourceFile.Auxiliary);
                 context.functions.AddRange(await fileServices.ExtractFile(context.uploaded_files["implementationfile"], SourceFile.Implementation));
                 context.functions.AddRange(await fileServices.ExtractFile(context.uploaded_files["specificationfile"], SourceFile.Specification));
                 NavigationManager.NavigateTo("/EmptyData");
