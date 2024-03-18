@@ -77,7 +77,7 @@
                     <br />
                     <pre>
                         @shownFunctionInScreen.Description
-                            </pre>
+                                        </pre>
                 }
             </div>
         </div>
@@ -109,11 +109,12 @@
                         </li>
                     }
                 </ul>
-                <div class="mt-3 d-flex justify-content-evenly">
+
+                <div class=@(Count_of_panels>4?"mt-3 d-flex overflow-x-auto pe-2":"mt-3 d-flex overflow-x-auto justify-content-evenly")>
                     @foreach (var item in Panels)
                     {
-                        <div class=" function-card-list crad" style="width:@((100/@Panels.Count())-1)%">
-                            <h5 class="card-title">@item.ToString()</h5>
+                        <div class=" function-card-list crad" style="width:@((100/Count_of_panels)-1)%;@(Count_of_panels>4?"margin-left:0.75rem":"margin-left:0")">
+                            <h5 class="card-title">@item.GetDisplayName()</h5>
                             <div class="card-body">
                                 @foreach (var fun in FunctionsInPanels.Where(f => f.FunctionType == item))
                                 {
@@ -145,7 +146,7 @@
                                     @str
                                 <br />
                                 }
-                                    </pre>
+                            </pre>
                         </div>
                     }
                 </div>

@@ -20,7 +20,13 @@ namespace TextEditor.Pages.EmptyData
         public List<Function> FunctionsInPanels { get; set; } = new List<Function>();
         public List<SelectedFunction> ChoosenFunctions { get; set; } = new List<SelectedFunction>() { };
         public List<SelectedFunction> NewelectedFunction { get; set; } = new List<SelectedFunction>() { };
-
+        public int Count_of_panels
+        {
+            get
+            {
+                return Panels.Count();
+            }
+        }
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)

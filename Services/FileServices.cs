@@ -10,7 +10,26 @@ namespace TextEditor.Services
 {
     public class FileServices : IFileServices
     {
-        private static int count = 1;
+        private static int count { get; set; } = 1;
+
+        public async Task CreatingSavedFile(string folderPath, string folderName)
+        {
+            string fileName = folderName + ".fv";
+            string filePath = Path.Combine(folderPath, fileName);
+            // Create the directory if it doesn't exist
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            if (!File.Exists(filePath))
+            {
+                using (FileStream fs = File.Create(filePath))
+                {
+                    // You can write to the file if needed
+                }
+
+            }
+        }
         public async Task CopyFileToFolder(IBrowserFile file, string folderPath)
         {
             if (!Directory.Exists(folderPath))
@@ -34,20 +53,38 @@ namespace TextEditor.Services
             }
             var lines = extractedfile.Trim().Split("\n\n");
             //Getting Lemmas
-            var lemmas = GetLemmas(lines.Where(l => l.StartsWith(FunctionType.Lemma.ToString())).ToList(), sourceFile, file.Name);
+            var lemmas = GetLemmas(lines.Where(l => l.StartsWith(FunctionType.Lemma.GetDisplayName())).ToList(), sourceFile, file.Name);
             functions.AddRange(lemmas);
-             //Getting Functions
-            var _Functions_from_file = GetFunctiosEndWithDotAndEqual(lines.Where(l => l.StartsWith(FunctionType.Function.ToString())).ToList(),
-                sourceFile, file.Name,FunctionType.Function);
-            functions.AddRange(_Functions_from_file);    
+            //Getting Functions
+            var linefunctions = lines.Where(l => l.StartsWith(FunctionType.Function.GetDisplayName())).ToList();
+            if (linefunctions.Count() > 0)
+            {
+                functions.AddRange(GetFunctiosEndWithDotAndEqual(linefunctions, sourceFile, file.Name, FunctionType.Function));
+            }
             //Getting FixPoint
-            var fixPoints = GetFunctiosEndWithDotAndEqual(lines.Where(l => l.StartsWith(FunctionType.Fixpoint.ToString())).ToList(),
-                sourceFile, file.Name,FunctionType.Fixpoint);
-            functions.AddRange(fixPoints);
+            var fixPoints = lines.Where(l => l.StartsWith(FunctionType.Fixpoint.GetDisplayName())).ToList();
+            if (fixPoints.Count() > 0)
+            {
+                functions.AddRange(GetFunctiosEndWithDotAndEqual(fixPoints, sourceFile, file.Name, FunctionType.Fixpoint));
+            }
             //Getting Definitions
-            var definitions = GetFunctiosEndWithDotAndEqual(lines.Where(l => l.StartsWith(FunctionType.Definition.ToString())).ToList(),
-                sourceFile, file.Name,FunctionType.Definition);
-            functions.AddRange(definitions);
+            var definitions = lines.Where(l => l.StartsWith(FunctionType.Definition.GetDisplayName())).ToList();
+            if (definitions.Count() > 0)
+            {
+                functions.AddRange(GetFunctiosEndWithDotAndEqual(definitions, sourceFile, file.Name, FunctionType.Definition));
+            }
+            //Getting Records
+            var Records = lines.Where(l => l.StartsWith(FunctionType.Record.GetDisplayName())).ToList();
+            if (Records.Count() > 0)
+            {
+                functions.AddRange(GetFunctiosEndWithDotAndEqual(Records, sourceFile, file.Name, FunctionType.Record));
+            }
+            //Getting Canonicals 
+            var Canonicals = lines.Where(l => l.StartsWith(FunctionType.Canonical.GetDisplayName())).ToList();
+            if (Canonicals.Count() > 0)
+            {
+                functions.AddRange(GetFunctiosEndWithDotAndEqual(Canonicals, sourceFile, file.Name, FunctionType.Canonical));
+            }
             return functions;
         }
         private List<Function> GetLemmas(List<string> functions, SourceFile sourceFile, string filename)
@@ -105,5 +142,6 @@ namespace TextEditor.Services
             }
             return Functions;
         }
+
     }
 }

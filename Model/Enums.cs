@@ -1,5 +1,25 @@
-﻿ namespace TextEditor.Model
+﻿using System.ComponentModel.DataAnnotations;
+namespace TextEditor.Model
 {
+    public static class EnumExtensions
+    {
+        public static string GetDisplayName(this Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var displayAttribute = (DisplayAttribute)Attribute.GetCustomAttribute(field, typeof(DisplayAttribute));
+            return displayAttribute != null ? displayAttribute.Name : value.ToString();
+        }
+    }
+    [AttributeUsage(AttributeTargets.Field)]
+    public class DisplayAttribute : Attribute
+    {
+        public string Name { get; }
+
+        public DisplayAttribute(string name)
+        {
+            Name = name;
+        }
+    }
     public enum FunctionType
     {
         Function,
@@ -9,9 +29,17 @@
         Inductive,
         Record,
         Class,
-        Program_Definition,
-        Program_Fixpoint,
-
+        [Display("Program Definition")]
+        ProgramDefinition,
+        [Display("Program Fixpoint")]
+        ProgramFixpoint,
+        Theorems,
+        Fact,
+        Remark,
+        Corollary,
+        Proposition,
+        Properties,
+        Canonical
     }
     public enum SourceFile
     {
