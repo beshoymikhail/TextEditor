@@ -12,14 +12,14 @@ namespace TextEditor.Pages.EmptyData
 {
     public partial class AddingNewData
     {
-        public SectionType _sectionType;
+        public DocumentationType _documentaionType;
         public List<string> TabList { get; set; } = new List<string> { "" };
-        public List<FunctionType> Panels { get; set; } = new List<FunctionType>();
-        public Function selectfunctiontoinsert { get; set; }
-        public Function shownFunctionInScreen { get; set; }
-        public List<Function> FunctionsInPanels { get; set; } = new List<Function>();
-        public List<SelectedFunction> ChoosenFunctions { get; set; } = new List<SelectedFunction>() { };
-        public List<SelectedFunction> NewelectedFunction { get; set; } = new List<SelectedFunction>() { };
+        public List<StructureType> Panels { get; set; } = new List<StructureType>();
+        public Structure selected_structure_to_insert { get; set; }
+        public Structure shownStructureInScreen { get; set; }
+        public List<Structure> StructureInPanels { get; set; } = new List<Structure>();
+        public List<Structure> ChoosenStructures { get; set; } = new List<Structure>() { };
+        public List<Structure> NewSelectedStructures { get; set; } = new List<Structure>() { };
         public int Count_of_panels
         {
             get
@@ -31,50 +31,47 @@ namespace TextEditor.Pages.EmptyData
         {
             if (firstRender)
             {
-                _sectionType = (SectionType)int.Parse(NavigationManager.Uri.Split("=")[1]);
-                TabList = HelperMethods.GetTabList(_sectionType);
-                Panels = HelperMethods.GetFunctionType(_sectionType, TabList[0]);
-                var sourcefiles = HelperMethods.GetSourceFiles(_sectionType, TabList[0]);
-                FunctionsInPanels = context.functions.Where(f => sourcefiles.Contains(f.sourceFile) && Panels.Contains(f.FunctionType)).ToList();
-                ChoosenFunctions = context.SelectedFunctions.Where(sf => sf.SectionType == _sectionType).ToList();
-                shownFunctionInScreen = ChoosenFunctions.FirstOrDefault();
+                _documentaionType = (DocumentationType)int.Parse(NavigationManager.Uri.Split("=")[1]);
+                TabList = HelperMethods.GetTabList(_documentaionType);
+                Panels = HelperMethods.GetStructureType(_documentaionType, TabList[0]);
+                var sourcefiles = HelperMethods.GetSourceFiles(_documentaionType, TabList[0]);
+                StructureInPanels = context.structures.Where(f => sourcefiles.Contains(f.sourceFile) && Panels.Contains(f.StructureType)).ToList();
+                ChoosenStructures = new List<Structure> (context.Documentations[_documentaionType].DocumentationStructures);
                 StateHasChanged();
             }
         }
-        private void HandleInsertFunction()
+        private void HandleInsertStructure()
         {
-            if (!ChoosenFunctions.Any(cf => cf.Id == selectfunctiontoinsert.Id))
+            if (!ChoosenStructures.Any(cf => cf.Id == selected_structure_to_insert.Id))
             {
-                SelectedFunction sf = new SelectedFunction
+                Structure sf = new Structure
                 {
-                    Id = selectfunctiontoinsert.Id,
-                    Name = selectfunctiontoinsert.Name,
-                    Description = selectfunctiontoinsert.Description,
-                    FileName = selectfunctiontoinsert.FileName,
-                    FunctionType = selectfunctiontoinsert.FunctionType,
-                    sourceFile = selectfunctiontoinsert.sourceFile,
-                    SectionType = _sectionType
+                    Id = selected_structure_to_insert.Id,
+                    Name = selected_structure_to_insert.Name,
+                    Description = selected_structure_to_insert.Description,
+                    StructureType = selected_structure_to_insert.StructureType,
+                    sourceFile = selected_structure_to_insert.sourceFile
                 };
-                ChoosenFunctions.Add(sf);
-                NewelectedFunction.Add(sf);
+                NewSelectedStructures.Add(sf);
+                ChoosenStructures.Add(sf);
             }
         }
-        private void HandleShownFunctionClickedInScreen(int functionId)
+        private void HandleShownStructureClickedInScreen(int StructureId)
         {
-            shownFunctionInScreen = ChoosenFunctions.FirstOrDefault(cf => cf.Id == functionId);
+            shownStructureInScreen = ChoosenStructures.FirstOrDefault(cf => cf.Id == StructureId);
         }
-        private void HandleSaveAndAddFunctionsBtn()
+        private void HandleBtnSaveAndAddStructures()
         {
-            context.SelectedFunctions.AddRange(NewelectedFunction);
+            context.Documentations[_documentaionType].DocumentationStructures= ChoosenStructures;
             NavigationManager.NavigateTo("/EmptyData");
         }
         private void HandleDiscardChangesBtn()
         {
-            ChoosenFunctions = context.SelectedFunctions.Where(sf => sf.SectionType == _sectionType).ToList();
-            NewelectedFunction.Clear();
-            shownFunctionInScreen = ChoosenFunctions.FirstOrDefault();
+            ChoosenStructures = context.Documentations[_documentaionType].DocumentationStructures;
+            NewSelectedStructures.Clear();
+            shownStructureInScreen = null;
         }
-        async Task DeleteItemAsync(SelectedFunction selectedFunction)
+        async Task DeleteItemAsync(Structure selectedStructure)
         {
             var options = new MessageBoxOptions("Do you want delete this question?")
             {
@@ -85,9 +82,9 @@ namespace TextEditor.Pages.EmptyData
             var result = await Electron.Dialog.ShowMessageBoxAsync(options);
             if (result.Response == 0)
             {
-                ChoosenFunctions.Remove(selectedFunction);
-                NewelectedFunction.Remove(selectedFunction);
-                shownFunctionInScreen = null;
+                ChoosenStructures.Remove(selectedStructure);
+                NewSelectedStructures.Remove(selectedStructure);
+                shownStructureInScreen = null;
             }
         }
         public async Task DeleteAllFunctionsAsync()
@@ -101,18 +98,17 @@ namespace TextEditor.Pages.EmptyData
             var result = await Electron.Dialog.ShowMessageBoxAsync(options);
             if (result.Response == 0)
             {
-                ChoosenFunctions?.Clear();
-                NewelectedFunction?.Clear();
-                context.SelectedFunctions.RemoveAll(sf => sf.SectionType == _sectionType);
-                shownFunctionInScreen = null;
+                ChoosenStructures?.Clear();
+                NewSelectedStructures?.Clear();
+                shownStructureInScreen = null;
             }
         }
         private void HandleTabListChange(int tablLlistId)
         {
-            selectfunctiontoinsert = null;
-            Panels = HelperMethods.GetFunctionType(_sectionType, TabList[tablLlistId]);
-            var sourcefiles = HelperMethods.GetSourceFiles(_sectionType, TabList[tablLlistId]);
-            FunctionsInPanels = context.functions.Where(f => sourcefiles.Contains(f.sourceFile) && Panels.Contains(f.FunctionType)).ToList();
+            selected_structure_to_insert = null;
+            Panels = HelperMethods.GetStructureType(_documentaionType, TabList[tablLlistId]);
+            var sourcefiles = HelperMethods.GetSourceFiles(_documentaionType, TabList[tablLlistId]);
+            StructureInPanels = context.structures.Where(f => sourcefiles.Contains(f.sourceFile) && Panels.Contains(f.StructureType)).ToList();
         }
     }
 }

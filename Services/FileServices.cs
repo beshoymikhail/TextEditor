@@ -30,66 +30,72 @@ namespace TextEditor.Services
 
             }
         }
-        public async Task CopyFileToFolder(IBrowserFile file, string folderPath)
+        public async Task CopyFileToFolder(List<IBrowserFile> files, string folderPath)
         {
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
-            using (var fileStream = new FileStream(Path.Combine(folderPath, file.Name), FileMode.Create))
+            foreach (IBrowserFile file in files)
             {
-                await file.OpenReadStream().CopyToAsync(fileStream);
+                using (var fileStream = new FileStream(Path.Combine(folderPath, file.Name), FileMode.Create))
+                {
+                    await file.OpenReadStream().CopyToAsync(fileStream);
+                }
             }
         }
 
-        public async Task<List<Function>> ExtractFile(IBrowserFile file, SourceFile sourceFile)
+        public async Task<List<Structure>> ExtractFile(List<IBrowserFile> files, SourceFile sourceFile)
         {
-            List<Function> functions = new List<Function>();
+            List<Structure> functions = new List<Structure>();
             string extractedfile = "";
-            var stream = file.OpenReadStream();
-            using (var reader = new StreamReader(stream))
+            foreach (IBrowserFile file in files)
             {
-                extractedfile = await reader.ReadToEndAsync();
+                var stream = file.OpenReadStream();
+                using (var reader = new StreamReader(stream))
+                {
+                    extractedfile += await reader.ReadToEndAsync();
+                }
             }
             var lines = extractedfile.Trim().Split("\n\n");
             //Getting Lemmas
-            var lemmas = GetLemmas(lines.Where(l => l.StartsWith(FunctionType.Lemma.GetDisplayName())).ToList(), sourceFile, file.Name);
+            var lemmas = GetLemmas(lines.Where(l => l.StartsWith(StructureType.Lemma.GetDisplayName())).ToList(), sourceFile);
             functions.AddRange(lemmas);
             //Getting Functions
-            var linefunctions = lines.Where(l => l.StartsWith(FunctionType.Function.GetDisplayName())).ToList();
+            var linefunctions = lines.Where(l => l.StartsWith(StructureType.Function.GetDisplayName())).ToList();
             if (linefunctions.Count() > 0)
             {
-                functions.AddRange(GetFunctiosEndWithDotAndEqual(linefunctions, sourceFile, file.Name, FunctionType.Function));
+                functions.AddRange(GetStructuresEndWithDotAndEqual(linefunctions, sourceFile, StructureType.Function));
             }
             //Getting FixPoint
-            var fixPoints = lines.Where(l => l.StartsWith(FunctionType.Fixpoint.GetDisplayName())).ToList();
+            var fixPoints = lines.Where(l => l.StartsWith(StructureType.Fixpoint.GetDisplayName())).ToList();
             if (fixPoints.Count() > 0)
             {
-                functions.AddRange(GetFunctiosEndWithDotAndEqual(fixPoints, sourceFile, file.Name, FunctionType.Fixpoint));
+                functions.AddRange(GetStructuresEndWithDotAndEqual(fixPoints, sourceFile, StructureType.Fixpoint));
             }
             //Getting Definitions
-            var definitions = lines.Where(l => l.StartsWith(FunctionType.Definition.GetDisplayName())).ToList();
+            var definitions = lines.Where(l => l.StartsWith(StructureType.Definition.GetDisplayName())).ToList();
             if (definitions.Count() > 0)
             {
-                functions.AddRange(GetFunctiosEndWithDotAndEqual(definitions, sourceFile, file.Name, FunctionType.Definition));
+                functions.AddRange(GetStructuresEndWithDotAndEqual(definitions, sourceFile, StructureType.Definition));
             }
             //Getting Records
-            var Records = lines.Where(l => l.StartsWith(FunctionType.Record.GetDisplayName())).ToList();
+            var Records = lines.Where(l => l.StartsWith(StructureType.Record.GetDisplayName())).ToList();
             if (Records.Count() > 0)
             {
-                functions.AddRange(GetFunctiosEndWithDotAndEqual(Records, sourceFile, file.Name, FunctionType.Record));
+                functions.AddRange(GetStructuresEndWithDotAndEqual(Records, sourceFile, StructureType.Record));
             }
             //Getting Canonicals 
-            var Canonicals = lines.Where(l => l.StartsWith(FunctionType.Canonical.GetDisplayName())).ToList();
+            var Canonicals = lines.Where(l => l.StartsWith(StructureType.Canonical.GetDisplayName())).ToList();
             if (Canonicals.Count() > 0)
             {
-                functions.AddRange(GetFunctiosEndWithDotAndEqual(Canonicals, sourceFile, file.Name, FunctionType.Canonical));
+                functions.AddRange(GetStructuresEndWithDotAndEqual(Canonicals, sourceFile,  StructureType.Canonical));
             }
             return functions;
         }
-        private List<Function> GetLemmas(List<string> functions, SourceFile sourceFile, string filename)
+        private List<Structure> GetLemmas(List<string> functions, SourceFile sourceFile)
         {
-            var Lemmas = new List<Function>();
+            var Lemmas = new List<Structure>();
             foreach (var function in functions)
             {
                 string FunName = function.Split("Lemma")[1].Split("\n")[0];
@@ -109,38 +115,36 @@ namespace TextEditor.Services
                     FunName = parts[0];
                 }
                 Lemmas.Add(
-                    new Function()
+                    new Structure()
                     {
                         Id = count,
                         Name = FunName,
                         Description = function.Split("Lemma")[1].Split(FunName)[1].Substring(2).Trim(),
                         sourceFile = sourceFile,
-                        FileName = filename,
-                        FunctionType = FunctionType.Lemma
+                        StructureType = StructureType.Lemma
                     });
                 count++;
             }
             return Lemmas;
         }
-        private List<Function> GetFunctiosEndWithDotAndEqual(List<string> functions, SourceFile sourceFile, string filename, FunctionType functionType)
+        private List<Structure> GetStructuresEndWithDotAndEqual(List<string> structures, SourceFile sourceFile, StructureType StructureType)
         {
-            var Functions = new List<Function>();
-            foreach (var function in functions)
+            var Structures = new List<Structure>();
+            foreach (var function in structures)
             {
-                string[] Funparts = function.Split(functionType.ToString())[1].Split(":=");
-                Functions.Add(
-                    new Function()
+                string[] Funparts = function.Split(StructureType.ToString())[1].Split(":=");
+                Structures.Add(
+                    new Structure()
                     {
                         Id = count,
                         Name = Funparts[0],
                         Description = Funparts[1].Substring(2).Trim(),
                         sourceFile = sourceFile,
-                        FileName = filename,
-                        FunctionType = functionType
+                        StructureType = StructureType
                     });
                 count++;
             }
-            return Functions;
+            return Structures;
         }
 
     }

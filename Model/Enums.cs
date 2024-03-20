@@ -20,7 +20,7 @@ namespace TextEditor.Model
             Name = name;
         }
     }
-    public enum FunctionType
+    public enum StructureType
     {
         Function,
         Lemma,
@@ -47,13 +47,19 @@ namespace TextEditor.Model
         Specification,
         Auxiliary
     }
-    public enum SectionType
+    public enum DocumentationType
     {
+        [Display("Data Types")]
         DataTypes,
+        [Display("Admitted Lemmas")]
         AdmittedLemmas,
+        [Display("Main Functions")]
         MainFunctions,
+        [Display("Support Functions")]
         SupportFunctions,
+        [Display("Auxiliary Functions")]
         AuxiliaryFunctions,
+        [Display("Other Relevant Functions")]
         OtherRelevantFunctions
     }
 }

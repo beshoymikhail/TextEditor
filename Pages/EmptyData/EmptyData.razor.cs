@@ -10,7 +10,7 @@ namespace TextEditor.Pages.EmptyData
         {
             NavigationManager.NavigateTo("/");
         }
-        async Task DeleteItemAsync(SelectedFunction selectedFunction)
+        async Task DeleteItemAsync(Structure structure,DocumentationType documentationType)
         {
             var options = new MessageBoxOptions("Do you want delete this question?")
             {
@@ -21,7 +21,7 @@ namespace TextEditor.Pages.EmptyData
             var result = await Electron.Dialog.ShowMessageBoxAsync(options);
             if (result.Response == 0)
             {
-                context.SelectedFunctions.Remove(selectedFunction);
+                context.Documentations[documentationType].DocumentationStructures.Remove(structure);
             }
         }
     }

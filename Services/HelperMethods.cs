@@ -4,58 +4,58 @@ namespace TextEditor.Services
 {
     public static class HelperMethods
     {
-        public static List<string> GetTabList(SectionType sectionType)
+        public static List<string> GetTabList(DocumentationType DocumentationType)
         {
-            if (sectionType == SectionType.DataTypes)
+            if (DocumentationType == DocumentationType.DataTypes)
             {
                 return new List<string> { "Implementaion", "Specification" };
             }
-            if (sectionType == SectionType.MainFunctions || sectionType == SectionType.SupportFunctions)
+            if (DocumentationType == DocumentationType.MainFunctions || DocumentationType == DocumentationType.SupportFunctions)
             {
                 return new List<string> { "Functions", "Defined by" };
             }
             return new List<string>();
         }
-        public static List<FunctionType> GetFunctionType(SectionType sectionType, string Panel)
+        public static List<StructureType> GetStructureType(DocumentationType DocumentationType, string Panel)
         {
-            if (sectionType == SectionType.DataTypes)
+            if (DocumentationType == DocumentationType.DataTypes)
             {
-                return new List<FunctionType>
+                return new List<StructureType>
                 {
-                    FunctionType.Inductive, FunctionType.Record, FunctionType.Definition, FunctionType.Class
+                    StructureType.Inductive, StructureType.Record, StructureType.Definition, StructureType.Class
                 };
             }
-            else if ((sectionType == SectionType.MainFunctions || sectionType == SectionType.SupportFunctions) && Panel == "Functions")
+            else if ((DocumentationType == DocumentationType.MainFunctions || DocumentationType == DocumentationType.SupportFunctions) && Panel == "Functions")
             {
-                return new List<FunctionType>
+                return new List<StructureType>
                 {
-                    FunctionType.Inductive, FunctionType.Definition,FunctionType.Fixpoint, FunctionType.Function, FunctionType.ProgramDefinition, FunctionType.ProgramFixpoint
+                    StructureType.Inductive, StructureType.Definition,StructureType.Fixpoint, StructureType.Function, StructureType.ProgramDefinition, StructureType.ProgramFixpoint
                 };
             }
-            else if ((sectionType == SectionType.MainFunctions || sectionType == SectionType.SupportFunctions) && Panel == "Defined by")
+            else if ((DocumentationType == DocumentationType.MainFunctions || DocumentationType == DocumentationType.SupportFunctions) && Panel == "Defined by")
             {
-                return new List<FunctionType>
+                return new List<StructureType>
                 {
-                    FunctionType.Lemma, FunctionType.Theorems,FunctionType.Fact, FunctionType.Remark, FunctionType.Corollary, FunctionType.Proposition,FunctionType.Properties
+                    StructureType.Lemma, StructureType.Theorems,StructureType.Fact, StructureType.Remark, StructureType.Corollary, StructureType.Proposition,StructureType.Properties
                 };
             }
-            return new List<FunctionType>();
+            return new List<StructureType>();
         }
-        public static List<SourceFile> GetSourceFiles(SectionType sectionType, string Panel)
+        public static List<SourceFile> GetSourceFiles(DocumentationType DocumentationType, string Panel)
         {
-            if (sectionType == SectionType.DataTypes && Panel == "Implementaion")
+            if (DocumentationType == DocumentationType.DataTypes && Panel == "Implementaion")
             {
                 return new List<SourceFile> { SourceFile.Implementation };
             }
-            else if (sectionType == SectionType.DataTypes && Panel == "Specification")
+            else if (DocumentationType == DocumentationType.DataTypes && Panel == "Specification")
             {
                 return new List<SourceFile> { SourceFile.Specification };
             }
-            else if ((sectionType == SectionType.MainFunctions || sectionType == SectionType.SupportFunctions) && Panel == "Functions")
+            else if ((DocumentationType == DocumentationType.MainFunctions || DocumentationType == DocumentationType.SupportFunctions) && Panel == "Functions")
             {
                 return new List<SourceFile> { SourceFile.Implementation };
             }
-            else if ((sectionType == SectionType.MainFunctions || sectionType == SectionType.SupportFunctions) && Panel == "Defined by")
+            else if ((DocumentationType == DocumentationType.MainFunctions || DocumentationType == DocumentationType.SupportFunctions) && Panel == "Defined by")
             {
                 return new List<SourceFile> { SourceFile.Auxiliary, SourceFile.Implementation, SourceFile.Specification };
             }

@@ -29,7 +29,7 @@
                         <input type="text" class="form-control input-group" placeholder="Enter Folder Name" @bind=@context.FolderName required />
                     </div>
                     <div class="col-lg-6 mt-2 d-flex">
-                        <input type="search" class="form-control rounded-end-0" placeholder="Folder Path" @bind=@context.FolderPath  readonly required/>
+                        <input type="search" class="form-control rounded-end-0" placeholder="Folder Path" @bind=@context.FolderPath  readonly required />
                         <button class="btn-select-path" type="button" @onclick="SelectDirectory">Select</button>
                     </div>
                 </div>
@@ -41,9 +41,9 @@
                         }
                         else
                         {
-                            <UploadedFileComponent FileName="@context.uploaded_files["auxiliaryfile"].Name" InputId="auxiliaryfile" DeleteFileChange="HandleDeleteFile"></UploadedFileComponent>
+                            <UploadedFileComponent files="@context.uploaded_files["auxiliaryfile"]" InputId="auxiliaryfile" DeleteFileChange="HandleDeleteFile"></UploadedFileComponent>
                         }
-                        <InputFile id="auxiliaryfile" hidden OnChange="HandleUploadAuxiliaryFile" accept=".v" required />
+                        <InputFile id="auxiliaryfile" hidden OnChange="HandleUploadAuxiliaryFile" accept=".v" multiple required />
                     </div>
                     <div class="col-lg-4 mt-2  justify-content-center d-flex">
 
@@ -53,9 +53,9 @@
                         }
                         else
                         {
-                            <UploadedFileComponent FileName="@context.uploaded_files["implementationfile"].Name" InputId="implementationfile"></UploadedFileComponent>
+                            <UploadedFileComponent files="@context.uploaded_files["implementationfile"]" InputId="implementationfile"></UploadedFileComponent>
                         }
-                        <InputFile id="implementationfile" hidden OnChange="HandleUploadImplementationFile" accept=".v" required />
+                        <InputFile id="implementationfile" hidden OnChange="HandleUploadImplementationFile" accept=".v" multiple required />
                     </div>
                     <div class="col-lg-4 mt-2 justify-content-center d-flex">
                         @if (context.uploaded_files["specificationfile"] == null)
@@ -64,9 +64,9 @@
                         }
                         else
                         {
-                            <UploadedFileComponent FileName="@context.uploaded_files["specificationfile"].Name" InputId="specificationfile"></UploadedFileComponent>
+                            <UploadedFileComponent files="@context.uploaded_files["specificationfile"]" InputId="specificationfile"></UploadedFileComponent>
                         }
-                        <InputFile id="specificationfile" hidden OnChange="HandleUploadSpecificationFile" accept=".v" required />
+                        <InputFile id="specificationfile" hidden OnChange="HandleUploadSpecificationFile" accept=".v" multiple required />
                     </div>
                 </div>
             </div>
