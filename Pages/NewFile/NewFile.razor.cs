@@ -30,40 +30,20 @@ namespace TextEditor.Pages.NewFile
                     dotNetHelper);
             }
         }
-        private async void HandleUploadAuxiliaryFile(InputFileChangeEventArgs e)
-        {
-            context.uploaded_files["auxiliaryfile"] = e.GetMultipleFiles().ToList();
-        }
-
-        private async void HandleUploadImplementationFile(InputFileChangeEventArgs e)
-        {
-            context.uploaded_files["implementationfile"] = e.GetMultipleFiles().ToList();
-        }
-        private async void HandleUploadSpecificationFile(InputFileChangeEventArgs e)
-        {
-            context.uploaded_files["specificationfile"] = e.GetMultipleFiles().ToList();
-
-        }
         private async Task HandleCreateProjectBtnAsync()
         {
             context.FolderPath = @"D:\TextEditor";
             if (IsEnabled && !string.IsNullOrEmpty(context.FolderName) && !string.IsNullOrEmpty(context.FolderPath))
             {
-                fileServices.CopyFileToFolder(context.uploaded_files["auxiliaryfile"], context.FullFolderPath);
-                fileServices.CopyFileToFolder(context.uploaded_files["implementationfile"], context.FullFolderPath);
-                fileServices.CopyFileToFolder(context.uploaded_files["specificationfile"], context.FullFolderPath);
-                fileServices.CreatingSavedFile(context.FullFolderPath, context.FolderName);
+                await fileServices.CopyFileToFolder(context.uploaded_files["auxiliaryfile"], context.FullFolderPath);
+                await fileServices.CopyFileToFolder(context.uploaded_files["implementationfile"], context.FullFolderPath);
+                await fileServices.CopyFileToFolder(context.uploaded_files["specificationfile"], context.FullFolderPath);
+                await fileServices.CreatingSavedFile(context.FullFolderPath, context.FolderName);
                 context.structures = await fileServices.ExtractFile(context.uploaded_files["auxiliaryfile"], SourceFile.Auxiliary);
                 context.structures.AddRange(await fileServices.ExtractFile(context.uploaded_files["implementationfile"], SourceFile.Implementation));
                 context.structures.AddRange(await fileServices.ExtractFile(context.uploaded_files["specificationfile"], SourceFile.Specification));
                 NavigationManager.NavigateTo("/EmptyData");
             }
-        }
-        [JSInvokable]
-        async Task HandleDeleteFile(string fileName)
-        {
-            context.uploaded_files[fileName] = null;
-            StateHasChanged();
         }
         async Task SelectDirectory()
         {

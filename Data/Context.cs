@@ -17,7 +17,7 @@ namespace TextEditor.Data
             { DocumentationType.OtherRelevantFunctions,new Documentation(){DocumentationText="",DocumentationStructures=new List<Structure>()} },
         };
         public IDictionary<string, List<IBrowserFile>> uploaded_files { get; set; } = new Dictionary<string, List<IBrowserFile>>
-           { { "auxiliaryfile",new List<IBrowserFile>() }, { "implementationfile", new List < IBrowserFile >() }, { "specificationfile", new List < IBrowserFile >() } };
+           { { "auxiliaryfile",new List<IBrowserFile>() }, { "implementationfile", new List < IBrowserFile>() }, { "specificationfile", new List < IBrowserFile>() } };
         public string FolderPath { get; set; } = "";
         public string FolderName { get; set; } = "";
         public string FullFolderPath
@@ -27,5 +27,6 @@ namespace TextEditor.Data
                 return Path.Combine(FolderPath, FolderName);
             }
         }
+        public string IntroductionText { get; set; }
     }
 }

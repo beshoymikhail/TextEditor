@@ -2,7 +2,7 @@
 @inject Context context
 <PageTitle>Text Editor</PageTitle>
 
-<div class="classmain">
+<div class="classmainFirstPage">
     <div class="row text-center">
         <div class="m-3">
             <img width="120" height="120" src="Images/Logo.png" />
@@ -76,9 +76,9 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
 
-        context.uploaded_files["auxiliaryfile"] = null;
-        context.uploaded_files["implementationfile"] = null;
-        context.uploaded_files["specificationfile"] = null;
+        context.uploaded_files["auxiliaryfile"] = new List<IBrowserFile>();
+        context.uploaded_files["implementationfile"] = new List<IBrowserFile>();
+        context.uploaded_files["specificationfile"] = new List<IBrowserFile>();
         context.FolderName="";
         context.FolderPath="";
     }

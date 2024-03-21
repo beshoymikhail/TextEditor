@@ -52,18 +52,34 @@
     border-bottom-left-radius: 0;
 }
 .btn-upload-file {
-    width: 316px;
-    height: 158px;
+    min-width: 316px;
+    height: 70px;
     flex-shrink: 0;
     border-radius: 20px;
     background: #F5F5F5;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
     border: none;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
 }
-
+.uploaded-files-card {
+    height: 283px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #F5F5F5; 
+    margin-top:0.25rem;
+}
+.uploaded-files-card-title {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+.files-card-item {
+    display: flex;
+    padding:0.25rem 1rem;
+    justify-content: space-between;
+}
 .text-blue {
     color: #009DE0;
 }
@@ -95,17 +111,6 @@ input::placeholder {
     line-height: normal;
 }
 
-.btn-uploaded-file {
-    width: 316px;
-    height: 158px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: #F5F5F5;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding: 1.5rem !important;
-}
 
 .btn-circle-size {
     width: 128px;
@@ -210,14 +215,6 @@ input::placeholder {
     flex: 0 0 auto;
     width: 24%;
     margin-inline: auto;
-}
-
-.source-file {
-    color: #A5A5A5;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 25px; /* 178.571% */
 }
 
 .btn-addnewdata {
@@ -447,4 +444,32 @@ input::placeholder {
 
 .form-control:active {
     outline: none; 
+}
+.fileNameCardUploaded {
+    border-radius: 10px;
+    background: #F5F5F5;
+    width: 327px;
+    height: 88px;
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-left:1.25rem;
+}
+.modal-show-file {
+    --bs-modal-border-radius: none;
+    --bs-modal-border-color: none;
+    --bs-modal-border-width: none;
+}
+.modal-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100px;
+    margin: 0;
+    min-width: 370px;
+    height: 100%;
+    margin: 0;
 }

@@ -42,59 +42,13 @@
         <div class="col-10 row justify-content-around mt-2">
             <div class="row">
                 <div class="col-emptyfile-3 file-card-emptypage">
-                    <div class="TitleDataComponet">
-                        <h6>Auxiliary Files</h6>
-                        <button class="btn-add-data btn disabled">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="source-file text-break">
-
-                        @foreach (var item in context.uploaded_files["auxiliaryfile"])
-                        {
-                            <p>@Path.Combine(context.FullFolderPath, item.Name);</p>
-                        }
-                    </div>
+                    <FileUploadedCardType TypeOfUploadedFile="auxiliaryfile" _sourceFile=@(SourceFile.Auxiliary)></FileUploadedCardType>
                 </div>
                 <div class="col-emptyfile-3 file-card-emptypage">
-                    <div class="TitleDataComponet">
-                        <h6> Implementation Files</h6>
-                        <a class="btn-add-data btn disabled">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="source-file text-break">
-                        @foreach (var item in context.uploaded_files["implementationfile"])
-                        {
-                            <p>@Path.Combine(context.FullFolderPath, item.Name);</p>
-                        }
-                    </div>
+                    <FileUploadedCardType TypeOfUploadedFile="implementationfile" _sourceFile=@(SourceFile.Implementation)></FileUploadedCardType>
                 </div>
                 <div class="col-emptyfile-3 file-card-emptypage">
-                    <div class="TitleDataComponet">
-                        <h6>Specification Files</h6>
-                        <button class="btn-add-data btn disabled">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="source-file text-break">
-                        @foreach (var item in context.uploaded_files["specificationfile"])
-                        {
-                            <p>@Path.Combine(context.FullFolderPath, item.Name);</p>
-                        }
-                    </div>
+                    <FileUploadedCardType TypeOfUploadedFile="specificationfile" _sourceFile=@(SourceFile.Specification)></FileUploadedCardType>
                 </div>
                 <div class="col-emptyfile-3 file-card-emptypage">
                     <div class="TitleDataComponet">
@@ -119,10 +73,22 @@
                                 1.Introduction
                             </h6>
                             <button class="btn-add-data btn" id="btn-introduction">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @if (string.IsNullOrEmpty(context.IntroductionText))
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                }
                             </button>
                         </div>
                         <div>
@@ -133,10 +99,22 @@
                         <div class="TitleDataComponet">
                             <h6>2.Data Types</h6>
                             <a class="btn-add-data btn" href='AddNewData?DocumentationType=@((int)DocumentationType.DataTypes)'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @if (context.Documentations[DocumentationType.DataTypes].DocumentationStructures.Count == 0)
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                }
                             </a>
                         </div>
                         <div>
@@ -164,10 +142,22 @@
                         <div class="TitleDataComponet">
                             <h6>5.Admitted lemmas</h6>
                             <a class="btn-add-data btn" href='AddNewData?DocumentationType=@((int)DocumentationType.AdmittedLemmas)'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @if (context.Documentations[DocumentationType.AdmittedLemmas].DocumentationStructures.Count==0)
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                }
                             </a>
                         </div>
                         <div>
@@ -197,10 +187,22 @@
                         <div class="TitleDataComponet">
                             <h6>4A.Main functions</h6>
                             <a class="btn-add-data btn" href='AddNewData?DocumentationType=@((int)DocumentationType.MainFunctions)'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @if (context.Documentations[DocumentationType.MainFunctions].DocumentationStructures.Count == 0)
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                }
                             </a>
                         </div>
                         <div>
@@ -224,10 +226,22 @@
                         <div class="TitleDataComponet">
                             <h6>4B.Support functions </h6>
                             <a class="btn-add-data btn" href='AddNewData?DocumentationType=@((int)DocumentationType.SupportFunctions)'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @if (context.Documentations[DocumentationType.SupportFunctions].DocumentationStructures.Count == 0)
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                }
                             </a>
                         </div>
                         <div>
@@ -251,10 +265,22 @@
                         <div class="TitleDataComponet">
                             <h6>4C.Auxiliary functions </h6>
                             <a class="btn-add-data btn" href='AddNewData?DocumentationType=@((int)DocumentationType.AuxiliaryFunctions)'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @if (context.Documentations[DocumentationType.AuxiliaryFunctions].DocumentationStructures.Count == 0)
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                }
                             </a>
                         </div>
                         <div>
@@ -278,10 +304,22 @@
                         <div class="TitleDataComponet">
                             <h6>6.Other relevant files</h6>
                             <a class="btn-add-data btn" href='AddNewData?DocumentationType=@((int)DocumentationType.OtherRelevantFunctions)'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @if (context.Documentations[DocumentationType.OtherRelevantFunctions].DocumentationStructures.Count==0)
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M5.25 10.5H15.75" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M10.5 15.75V5.25" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+
+                                }
+                                else
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M9.625 1.75H7.875C3.5 1.75 1.75 3.5 1.75 7.875V13.125C1.75 17.5 3.5 19.25 7.875 19.25H13.125C17.5 19.25 19.25 17.5 19.25 13.125V11.375" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.0349 2.64248L7.13989 9.53748C6.87739 9.79998 6.61489 10.3162 6.56239 10.6925L6.18614 13.3262C6.04614 14.28 6.71989 14.945 7.67364 14.8137L10.3074 14.4375C10.6749 14.385 11.1911 14.1225 11.4624 13.86L18.3574 6.96498C19.5474 5.77498 20.1074 4.39248 18.3574 2.64248C16.6074 0.892477 15.2249 1.45248 14.0349 2.64248Z" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M13.0461 3.63123C13.6324 5.72248 15.2686 7.35873 17.3686 7.95373" stroke="#009DE0" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                }
                             </a>
                         </div>
                         <div>

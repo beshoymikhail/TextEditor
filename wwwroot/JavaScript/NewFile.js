@@ -6,11 +6,7 @@
     }
 }
 window.GreetingHelpers = GreetingHelpers;
-function UploadFile(input) {
-    document.getElementById(input).click();
-}
-
-function ReplaceFile(InputId) {
+function UploadFile(InputId) {
     $(`#${InputId}`).click()
 }
 
@@ -25,9 +21,4 @@ function renderjQueryComponents() {
     $("#btn-introduction").on('click', function () {
         $("#input-introduction-text").focus()
     })
-
 }
-window.handleButtonClick = (InputId) => {
-    console.log(InputId)
-    return GreetingHelpers.dotNetHelper.invokeMethodAsync('HandleDeleteFile', InputId);
-}; 

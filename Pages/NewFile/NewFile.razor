@@ -29,53 +29,30 @@
                         <input type="text" class="form-control input-group" placeholder="Enter Folder Name" @bind=@context.FolderName required />
                     </div>
                     <div class="col-lg-6 mt-2 d-flex">
-                        <input type="search" class="form-control rounded-end-0" placeholder="Folder Path" @bind=@context.FolderPath  readonly required />
+                        <input type="search" class="form-control rounded-end-0" placeholder="Folder Path" @bind=@context.FolderPath readonly required />
                         <button class="btn-select-path" type="button" @onclick="SelectDirectory">Select</button>
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-lg-4 mt-2 justify-content-center d-flex">
-                        @if (context.uploaded_files["auxiliaryfile"] == null)
-                        {
-                            <UploadFileComponent fileName="Auxiliary" Id="upload-auxiliary-file" input_id="auxiliaryfile"></UploadFileComponent>
-                        }
-                        else
-                        {
-                            <UploadedFileComponent files="@context.uploaded_files["auxiliaryfile"]" InputId="auxiliaryfile" DeleteFileChange="HandleDeleteFile"></UploadedFileComponent>
-                        }
-                        <InputFile id="auxiliaryfile" hidden OnChange="HandleUploadAuxiliaryFile" accept=".v" multiple required />
+                    <div class="col-lg-4 mt-md-1 mt-3">
+                        <UploadFileComponent fileName="Auxiliary" Id="upload-auxiliary-file" input_id="auxiliaryfile"></UploadFileComponent>
                     </div>
-                    <div class="col-lg-4 mt-2  justify-content-center d-flex">
-
-                        @if (context.uploaded_files["implementationfile"] == null)
-                        {
-                            <UploadFileComponent fileName="Implementation" Id="upload-implementation-file" input_id="implementationfile"></UploadFileComponent>
-                        }
-                        else
-                        {
-                            <UploadedFileComponent files="@context.uploaded_files["implementationfile"]" InputId="implementationfile"></UploadedFileComponent>
-                        }
-                        <InputFile id="implementationfile" hidden OnChange="HandleUploadImplementationFile" accept=".v" multiple required />
+                    <div class="col-lg-4 mt-md-1 mt-3">
+                        <UploadFileComponent fileName="Implementation" Id="upload-implementation-file" input_id="implementationfile"></UploadFileComponent>
                     </div>
-                    <div class="col-lg-4 mt-2 justify-content-center d-flex">
-                        @if (context.uploaded_files["specificationfile"] == null)
-                        {
-                            <UploadFileComponent fileName="Specification" Id="upload-specification-file" input_id="specificationfile"></UploadFileComponent>
-                        }
-                        else
-                        {
-                            <UploadedFileComponent files="@context.uploaded_files["specificationfile"]" InputId="specificationfile"></UploadedFileComponent>
-                        }
-                        <InputFile id="specificationfile" hidden OnChange="HandleUploadSpecificationFile" accept=".v" multiple required />
+                    <div class="col-lg-4 mt-md-1 mt-3">
+                        <UploadFileComponent fileName="Specification" Id="upload-specification-file" input_id="specificationfile"></UploadFileComponent>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row text-end">
-        <div class=" my-4">
+    <div class="text-end me-4">
+        <div class=" my-3">
             <a class="btn-circle me-2 px-2 py-1 text-blue text-decoration-none" href="/"> Cancel </a>
-            <button class="background-blue btn-circle px-3 text-white text-decoration-none py-1" type="submit"> <span class="py-1">Create Project</span>  </button>
+            <button class="background-blue btn-circle px-3 text-white text-decoration-none py-1" type="submit">
+                <span class="py-1">Create Project</span>
+            </button>
         </div>
     </div>
 </form>
