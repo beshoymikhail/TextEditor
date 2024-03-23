@@ -1,28 +1,30 @@
 ﻿using ElectronNET.API.Entities;
 using ElectronNET.API;
+using System.Text.Json;
 using TextEditor.Model;
+using TextEditor.Services;
 
 namespace TextEditor.Pages.EmptyData
 {
     public partial class EmptyData
     {
+        private IFileServices fileServices = new FileServices();
         private void HandleDeleteThisFile()
         {
             NavigationManager.NavigateTo("/");
         }
-        async Task DeleteItemAsync(Structure structure,DocumentationType documentationType)
+        private async void HandleSaveFile()
         {
-            var options = new MessageBoxOptions("Do you want delete this question?")
-            {
-                Type = MessageBoxType.question,
-                Buttons = new[] { "Yes", "No" },
-                Title = "Deleting Function"
-            };
-            var result = await Electron.Dialog.ShowMessageBoxAsync(options);
-            if (result.Response == 0)
-            {
-                context.Documentations[documentationType].DocumentationStructures.Remove(structure);
-            }
+            string jsonString = JsonSerializer.Serialize(
+                new
+                {
+                    Introduction = context.Introduction,
+                    SavingFileDateTime = DateTime.Now.ToString(),
+                    saved_uploaded_files = context.saved_uploaded_files,
+                    Documentations = context.Documentations
+                }, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText($"{context.FullFolderPath}/{context.FolderName}.fv", jsonString);
+
         }
     }
 }

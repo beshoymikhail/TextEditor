@@ -15,12 +15,7 @@ namespace TextEditor.Pages.NewFile
         {
             if (firstRender)
             {
-                context.uploaded_files = new Dictionary<string, List<IBrowserFile>>
-                {
-                    { "auxiliaryfile",new List<IBrowserFile>() },
-                    { "implementationfile", new List < IBrowserFile>() },
-                    { "specificationfile", new List < IBrowserFile>() }
-                };
+                context.uploaded_files[input_id] = new  List<IBrowserFile>();
             }
         }
         private void HandleUploadFiles(InputFileChangeEventArgs e)

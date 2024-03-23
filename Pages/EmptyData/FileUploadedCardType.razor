@@ -10,15 +10,18 @@
     </button>
 </div>
 <div class="d-flex justify-content-between">
-    <div class="text-blue text-break me-1">
-        Tap here to view uploaded Files
-    </div>
-    <button type="button" class="btn-icon text-start me-1" data-bs-toggle="modal" data-bs-target="#@(TypeOfUploadedFile+"exampleModal")" @onclick="()=>HandleShownUpladedFiles(TypeOfUploadedFile)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42 13.98 8.42 12C8.42 10.02 10.02 8.42001 12 8.42001C13.98 8.42001 15.58 10.02 15.58 12Z" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.4C18.82 5.8 15.53 3.72 12 3.72C8.47 3.72 5.18 5.8 2.89 9.4C1.99 10.81 1.99 13.18 2.89 14.59C5.18 18.19 8.47 20.27 12 20.27Z" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-    </button>
+    @if (context.IsEditable)
+    {
+        <div class="text-blue text-break me-1">
+            Tap here to view uploaded Files
+        </div>
+        <button type="button" class="btn-icon text-start me-1" data-bs-toggle="modal" data-bs-target="#@(TypeOfUploadedFile+"exampleModal")">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42 13.98 8.42 12C8.42 10.02 10.02 8.42001 12 8.42001C13.98 8.42001 15.58 10.02 15.58 12Z" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.4C18.82 5.8 15.53 3.72 12 3.72C8.47 3.72 5.18 5.8 2.89 9.4C1.99 10.81 1.99 13.18 2.89 14.59C5.18 18.19 8.47 20.27 12 20.27Z" stroke="#009DE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+    }
 
 </div>
 
@@ -37,7 +40,7 @@
             </div>
             <hr class="mt-0 mb-1 mx-2" />
             <div class="p-3 overflow-auto overflow-x-hidden">
-                @foreach (var item in ShownFiles)
+                @foreach (var item in context.saved_uploaded_files[TypeOfUploadedFile])
                 {
                     <div class="fileNameCardUploaded">
                         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="48" viewBox="0 0 34 48" fill="none">
@@ -49,7 +52,7 @@
                             <path d="M24.1638 28.4121H5.33057V31.2941H24.1638V28.4121Z" fill="#30D5C8" />
                         </svg>
                         <span class="ms-2 align-content-center d-flex flex-wrap ms-2">
-                            @item.Name
+                            @item
                         </span>
                     </div>
                 }
@@ -62,14 +65,4 @@
     public string TypeOfUploadedFile { get; set; }
     [Parameter]
     public SourceFile _sourceFile { get; set; }
-    public List<IBrowserFile> ShownFiles { get; set; } = new List<IBrowserFile>();
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        ShownFiles = new List<IBrowserFile>(context.uploaded_files[TypeOfUploadedFile]);
-    }
-    private void HandleShownUpladedFiles(string source)
-    {
-        ShownFiles = new List<IBrowserFile>(context.uploaded_files[source]);
-        StateHasChanged();
-    }
 }

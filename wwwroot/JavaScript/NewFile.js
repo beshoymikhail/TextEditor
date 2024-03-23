@@ -12,9 +12,6 @@ function UploadFile(InputId) {
 
 
 function renderjQueryComponents() {
-    $("#btn-open-existing-file").on('click', function () {
-        $("#open-existing-file").click()
-    })
     $("#btn-upload-external-file").on('click', function () {
         $("#external-file").click()
     })

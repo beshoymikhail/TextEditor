@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.FileSystemGlobbing;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using TextEditor.Model;
 
@@ -30,8 +26,9 @@ namespace TextEditor.Services
 
             }
         }
-        public async Task CopyFileToFolder(List<IBrowserFile> files, string folderPath)
+        public async Task<List<string>> CopyFileToFolder(List<IBrowserFile> files, string folderPath)
         {
+            List<string> result = new List<string>();
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
@@ -41,21 +38,21 @@ namespace TextEditor.Services
                 using (var fileStream = new FileStream(Path.Combine(folderPath, file.Name), FileMode.Create))
                 {
                     await file.OpenReadStream().CopyToAsync(fileStream);
+                    result.Add(file.Name);
                 }
             }
+            return result;
         }
 
-        public async Task<List<Structure>> ExtractFile(List<IBrowserFile> files, SourceFile sourceFile)
+        public async Task<List<Structure>> ExtractFile(List<string> files, SourceFile sourceFile, string folderPath)
         {
             List<Structure> functions = new List<Structure>();
             string extractedfile = "";
-            foreach (IBrowserFile file in files)
+            foreach (var file in files)
             {
-                var stream = file.OpenReadStream();
-                using (var reader = new StreamReader(stream))
-                {
-                    extractedfile += await reader.ReadToEndAsync();
-                }
+                var readFile = Path.Combine(folderPath, file);
+                extractedfile += File.ReadAllText(readFile);
+
             }
             var lines = extractedfile.Trim().Split("\n\n");
             //Getting Lemmas
@@ -89,7 +86,7 @@ namespace TextEditor.Services
             var Canonicals = lines.Where(l => l.StartsWith(StructureType.Canonical.GetDisplayName())).ToList();
             if (Canonicals.Count() > 0)
             {
-                functions.AddRange(GetStructuresEndWithDotAndEqual(Canonicals, sourceFile,  StructureType.Canonical));
+                functions.AddRange(GetStructuresEndWithDotAndEqual(Canonicals, sourceFile, StructureType.Canonical));
             }
             return functions;
         }
@@ -147,5 +144,13 @@ namespace TextEditor.Services
             return Structures;
         }
 
+        public async Task<string> ReadFileAsString(string FilePath)
+        {
+            if (File.Exists(FilePath))
+            {
+                return File.ReadAllText(FilePath).ToString();
+            }
+            return "File Not Found";
+        }
     }
 }

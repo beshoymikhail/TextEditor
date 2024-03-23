@@ -6,7 +6,8 @@ namespace TextEditor.Services
     public interface IFileServices
     {
         public Task CreatingSavedFile( string folderPath, string folderName);
-        public Task CopyFileToFolder(List<IBrowserFile> files, string folderPath);
-        public Task<List<Structure>> ExtractFile(List<IBrowserFile> files, SourceFile sourceFile);
+        public Task<List<string>> CopyFileToFolder(List<IBrowserFile> files, string folderPath);
+        public Task<List<Structure>> ExtractFile(List<string> files, SourceFile sourceFile,string folderPath);
+        public Task<string> ReadFileAsString(string FilePath);
     }
 }

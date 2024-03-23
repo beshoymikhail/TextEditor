@@ -1,12 +1,8 @@
 ﻿using ElectronNET.API.Entities;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-using SocketIOClient.Messages;
 using TextEditor.Model;
 using TextEditor.Services;
-using System.Linq;
-using System;
 
 namespace TextEditor.Pages.EmptyData
 {
@@ -59,7 +55,7 @@ namespace TextEditor.Pages.EmptyData
         }
         private void HandleShownStructureClickedInScreen(int StructureId)
         {
-            shownStructureInScreenID =(int)ChoosenStructures.FirstOrDefault(cf => cf.Id == StructureId).Id;
+            shownStructureInScreenID =(int)(ChoosenStructures?.FirstOrDefault(cf => cf.Id == StructureId).Id);
             StateHasChanged();
         }
         private void HandleBtnSaveAndAddStructures()

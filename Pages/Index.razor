@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject Context context
+@inject NavigationManager NavigationManager
 <PageTitle>Text Editor</PageTitle>
 
 <div class="classmainFirstPage">
@@ -29,7 +30,7 @@
             </a>
         </div>
         <div class="col-lg-4 mt-2 d-flex justify-content-center ">
-            <button class="btn btn-openFile  btn-start-page" id="btn-open-existing-file">
+            <button class="btn btn-openFile  btn-start-page" id="btn-open-existing-file" @onclick="HandleBtnOpenExistingFile">
                 <div class="btn-icon-start text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 28 22" fill="none">
                         <g clip-path="url(#clip0_110_2766)">
@@ -49,7 +50,7 @@
                 </span>
             </button>
         </div>
-        <InputFile id="open-existing-file" hidden accept=".fv" />
+        <InputFile id="open-existing-file" hidden accept=".fv" OnChange="UploadExistingFile"/>
         <div class="col-lg-4 mt-2 d-flex justify-content-center ">
             <button @onclick="@HandleLearnMoreButton"  class="btn btn-learnmore text-white btn-start-page">
                 <div class="btn-icon-start text-center">
@@ -72,18 +73,3 @@
         </div>
     </div>
 </div>
-@code{
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-
-        context.uploaded_files["auxiliaryfile"] = new List<IBrowserFile>();
-        context.uploaded_files["implementationfile"] = new List<IBrowserFile>();
-        context.uploaded_files["specificationfile"] = new List<IBrowserFile>();
-        context.FolderName="";
-        context.FolderPath="";
-    }
-    private async Task HandleLearnMoreButton()
-    {
-        await Electron.Shell.OpenExternalAsync("https://formalv.com");
-    }
-}
