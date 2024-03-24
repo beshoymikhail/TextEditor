@@ -75,7 +75,7 @@
                 </div>
                 <hr />
                 <div class="fs-6 fw-bold">
-                    <span class="text-danger">@@ChoosenStructures.Where(s=>s.Id==shownStructureInScreenID).FirstOrDefault().StructureType.ToString()</span>
+                    <span class="text-danger">@ChoosenStructures.Where(s=>s.Id==shownStructureInScreenID).FirstOrDefault().StructureType.ToString()</span>
                     @(@ChoosenStructures.FirstOrDefault(s => s.Id == shownStructureInScreenID).Name + " : ")
                     <br />
                     <pre>
@@ -133,7 +133,7 @@
                     }
                 </div>
                 <div class="function-body m-2 overflow-auto p-4">
-                    @if (selected_structure_to_insert != null)
+                    @if (selected_structure_to_insert != null&&! string.IsNullOrEmpty(selected_structure_to_insert.Name))
                     {
                         <div class="d-flex justify-content-between">
                             <h5>

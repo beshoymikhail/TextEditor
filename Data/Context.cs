@@ -30,7 +30,8 @@ namespace TextEditor.Data
                 return Path.Combine(FolderPath, FolderName);
             }
         }
-        public string? SavingFileDateTime { get; set; }
+        public DateTime SavingFileDateTime { get; set; }
+        public DateTime CreationDateTime { get; set; }
         public bool IsEditable { get; set; } = true;
         public string? SavedFile { get; set; }
     }

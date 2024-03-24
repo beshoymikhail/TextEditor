@@ -49,7 +49,8 @@ namespace TextEditor.Pages.EmptyData
                 new
                 {
                     Introduction = context.Introduction,
-                    SavingFileDateTime = DateTime.Now.ToString(),
+                    CreationDateTime=context.CreationDateTime,
+                    SavingFileDateTime = DateTime.Now,
                     saved_uploaded_files = context.saved_uploaded_files,
                     Documentations = context.Documentations
                 }, new JsonSerializerOptions { WriteIndented = true });

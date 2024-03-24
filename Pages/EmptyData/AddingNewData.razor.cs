@@ -11,7 +11,7 @@ namespace TextEditor.Pages.EmptyData
         public DocumentationType _documentaionType;
         public List<string> TabList { get; set; } = new List<string> { "" };
         public List<StructureType> Panels { get; set; } = new List<StructureType>();
-        public Structure selected_structure_to_insert { get; set; } = new Structure();
+        public Structure selected_structure_to_insert { get; set; } 
         public int shownStructureInScreenID { get; set; } = 0;
         public List<Structure> StructureInPanels { get; set; } = new List<Structure>();
         public List<Structure> ChoosenStructures { get; set; } = new List<Structure>();

@@ -105,7 +105,7 @@ namespace TextEditor.Pages
         }
         private async void HandleOpenFileTocheckError()
         {
-            string selectedFile = @"D:\TextEditor\test2.fv";
+            string selectedFile = @"D:\TextEditor\test2\test2.fv";
             var fileAsString = await fileServices.ReadFileAsString(selectedFile);
             if (string.IsNullOrEmpty(fileAsString))
             {

@@ -64,11 +64,14 @@
                 </button>
             </div>
             <div>
+                @if (context.SavingFileDateTime != null)
+                {
+                    <p class="p-date">
+                        Edited: @context.SavingFileDateTime.ToString("dd MMM, yyyy")
+                    </p>
+                }
                 <p class="p-date">
-                    Edited: 24 Mar, 2024
-                </p>
-                <p class ="p-date">
-                    Created: 24 Mar, 2024
+                    Created: @context.CreationDateTime.ToString("dd MMM, yyyy")
                 </p>
             </div>
         </div>
