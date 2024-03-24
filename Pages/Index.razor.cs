@@ -37,12 +37,25 @@ namespace TextEditor.Pages
             if (fileresult != null && fileresult.Length > 0)
             {
                 string selectedFile = fileresult[0];
-                var fileds= selectedFile.Split(@"\").ToList();
+                var fileAsString = await fileServices.ReadFileAsString(selectedFile);
+                if (string.IsNullOrEmpty(fileAsString))
+                {
+                    var options = new MessageBoxOptions("The Choosen File is Empty.");
+                    options.Buttons = new string[] { "OK" };
+                    options.Title = "Alert";
+                    options.Type = MessageBoxType.warning;
+                    await Electron.Dialog.ShowMessageBoxAsync(options);
+                    return;
+                }
+                context.SavedFile = selectedFile;
+                var selectDirectory = Path.GetDirectoryName(selectedFile);
+                var fileds = selectDirectory?.Split(@"\").ToList();
 
-                context.FolderName = fileds[fileds.Count - 2];
-                context.FolderPath = fileds[fileds.Count - 3];
+                context.FolderName = fileds[fileds.Count - 1];
+                context.FolderPath = selectDirectory.Split($@"\{context.FolderName}")[0];
+                Console.WriteLine($"Folder name:{context.FolderName}\nFolderPath:{context.FolderPath}\nFullFolderPath:{context.FullFolderPath}");
 
-                var cont = JsonConvert.DeserializeObject<Context>(await fileServices.ReadFileAsString(selectedFile));
+                var cont = JsonConvert.DeserializeObject<Context>(fileAsString);
                 context.saved_uploaded_files = cont.saved_uploaded_files;
                 context.Introduction = cont.Introduction;
                 context.Documentations = cont.Documentations;
@@ -54,6 +67,11 @@ namespace TextEditor.Pages
                 }
                 foreach (var item in context.saved_uploaded_files)
                 {
+                    if (item.Value.Count < 1)
+                    {
+                        context.IsEditable = false;
+                        break;
+                    }
                     foreach (var file in item.Value)
                     {
                         context.IsEditable = files.Contains($"{Path.Combine(context.FullFolderPath, file)}");
@@ -85,9 +103,65 @@ namespace TextEditor.Pages
                 }
             }
         }
-        private async void UploadExistingFile(InputFileChangeEventArgs e)
+        private async void HandleOpenFileTocheckError()
         {
+            string selectedFile = @"D:\TextEditor\test2.fv";
+            var fileAsString = await fileServices.ReadFileAsString(selectedFile);
+            if (string.IsNullOrEmpty(fileAsString))
+            {
+                Console.WriteLine("File is Empty");
+                return;
+            }
+            context.SavedFile = selectedFile;
+            var selectDirectory = Path.GetDirectoryName(selectedFile);
+            var fileds = selectDirectory?.Split(@"\").ToList();
 
+            context.FolderName = fileds[fileds.Count - 1];
+            context.FolderPath = selectDirectory.Split($@"\{context.FolderName}")[0];
+            Console.WriteLine($"Folder name:{context.FolderName}\nFolderPath:{context.FolderPath}\nFullFolderPath:{context.FullFolderPath}");
+
+            var cont = JsonConvert.DeserializeObject<Context>(fileAsString);
+            context.saved_uploaded_files = cont.saved_uploaded_files;
+            context.Introduction = cont.Introduction;
+            context.Documentations = cont.Documentations;
+            context.SavingFileDateTime = cont.SavingFileDateTime;
+            var files = Directory.GetFiles(context.FullFolderPath);
+            foreach (var item in files)
+            {
+                Console.WriteLine(item);
+            }
+            foreach (var item in context.saved_uploaded_files)
+            {
+                if (item.Value.Count < 1)
+                {
+                    context.IsEditable = false;
+                    break;
+                }
+                foreach (var file in item.Value)
+                {
+                    context.IsEditable = files.Contains($"{Path.Combine(context.FullFolderPath, file)}");
+                    if (!context.IsEditable)
+                    {
+                        break;
+                    }
+                }
+                if (!context.IsEditable)
+                {
+                    break;
+                }
+            }
+            if (context.IsEditable)
+            {
+                context.structures = await fileServices.ExtractFile(context.saved_uploaded_files["auxiliaryfile"], SourceFile.Auxiliary, context.FullFolderPath);
+                context.structures.AddRange(await fileServices.ExtractFile(context.saved_uploaded_files["implementationfile"], SourceFile.Implementation, context.FullFolderPath));
+                context.structures.AddRange(await fileServices.ExtractFile(context.saved_uploaded_files["specificationfile"], SourceFile.Specification, context.FullFolderPath));
+                NavigationManager.NavigateTo("/EmptyData");
+            }
+            else
+            {
+                Console.WriteLine("Files not correct");
+                NavigationManager.NavigateTo("/EmptyData");
+            }
         }
     }
 }

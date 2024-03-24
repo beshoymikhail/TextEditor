@@ -6,9 +6,9 @@ namespace TextEditor.Pages.NewFile
     public partial class UploadFileComponent
     {
         [Parameter]
-        public string fileName { get; set; }
+        public string? fileName { get; set; }
         [Parameter]
-        public string Id { get; set; }
+        public string? Id { get; set; }
         [Parameter]
         public string input_id { get; set; }
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -17,7 +17,9 @@ namespace TextEditor.Pages.NewFile
             {
                 context.uploaded_files[input_id] = new  List<IBrowserFile>();
             }
+
         }
+
         private void HandleUploadFiles(InputFileChangeEventArgs e)
         {
             foreach (var file in e.GetMultipleFiles())

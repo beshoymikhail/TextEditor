@@ -6,7 +6,7 @@ namespace TextEditor.Model
         public static string GetDisplayName(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
-            var displayAttribute = (DisplayAttribute)Attribute.GetCustomAttribute(field, typeof(DisplayAttribute));
+            var displayAttribute = Attribute.GetCustomAttribute(field, typeof(DisplayAttribute)) as DisplayAttribute;
             return displayAttribute != null ? displayAttribute.Name : value.ToString();
         }
     }

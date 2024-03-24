@@ -156,8 +156,9 @@ input::placeholder {
     flex-direction: column;
     margin-top: 0.5rem !important;
     height: 98vh;
-    padding:0rem 1rem;
-    position:fixed;
+    padding: 0rem 1rem;
+    position: fixed;
+    justify-content: space-between;
 }
 
 .btn-emptypage {
@@ -166,6 +167,8 @@ input::placeholder {
     border-radius: 10px;
     background: #F5F5F5;
     border: none;
+    text-align: left !important;
+    padding-left:1rem;
 }
 
 .DataComponentBig {
@@ -472,4 +475,13 @@ input::placeholder {
     min-width: 370px;
     height: 100%;
     margin: 0;
+}
+.p-date {
+    color: #4F4F4F;
+    text-align: center;
+    font-family: "Noto Serif";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }

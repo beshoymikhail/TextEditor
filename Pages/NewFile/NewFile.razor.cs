@@ -2,6 +2,7 @@
 using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using TextEditor.Data;
 using TextEditor.Model;
 using TextEditor.Services;
 
@@ -30,13 +31,13 @@ namespace TextEditor.Pages.NewFile
         }
         private async Task HandleCreateProjectBtnAsync()
         {
-            context.FolderPath = @"D:\TextEditor";
             if (IsEnabled && !string.IsNullOrEmpty(context.FolderName) && !string.IsNullOrEmpty(context.FolderPath))
             {
+
                 context.saved_uploaded_files["auxiliaryfile"]= await fileServices.CopyFileToFolder(context.uploaded_files["auxiliaryfile"], context.FullFolderPath);
                 context.saved_uploaded_files["implementationfile"] = await fileServices.CopyFileToFolder(context.uploaded_files["implementationfile"], context.FullFolderPath);
                 context.saved_uploaded_files["specificationfile"] = await fileServices.CopyFileToFolder(context.uploaded_files["specificationfile"], context.FullFolderPath);
-                await fileServices.CreatingSavedFile(context.FullFolderPath, context.FolderName);
+                context.SavedFile=await fileServices.CreatingSavedFile(context.FullFolderPath, context.FolderName);
                 context.structures = await fileServices.ExtractFile(context.saved_uploaded_files["auxiliaryfile"], SourceFile.Auxiliary,context.FullFolderPath);
                 context.structures.AddRange(await fileServices.ExtractFile(context.saved_uploaded_files["implementationfile"], SourceFile.Implementation, context.FullFolderPath));
                 context.structures.AddRange(await fileServices.ExtractFile(context.saved_uploaded_files["specificationfile"], SourceFile.Specification, context.FullFolderPath));

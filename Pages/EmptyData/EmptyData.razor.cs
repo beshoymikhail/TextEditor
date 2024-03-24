@@ -9,11 +9,41 @@ namespace TextEditor.Pages.EmptyData
     public partial class EmptyData
     {
         private IFileServices fileServices = new FileServices();
-        private void HandleDeleteThisFile()
+        private async Task HandleDeleteThisFileAsync()
         {
-            NavigationManager.NavigateTo("/");
+            var options = new MessageBoxOptions("Do you want delete saved file")
+            {
+                Type = MessageBoxType.warning,
+                Buttons = new[] { "Yes", "No" },
+                Title = "Deleting File"
+            };
+            var result = await Electron.Dialog.ShowMessageBoxAsync(options);
+            if (result.Response == 0)
+            {
+                File.Delete(context.SavedFile);
+                NavigationManager.NavigateTo("/");
+            }
+        } 
+        private async void HandleCloseProgram()
+        {
+            var options = new MessageBoxOptions("Do you want save changes?")
+            {
+                Type = MessageBoxType.question,
+                Buttons = new[] { "Save", "Cancel","Discard" },
+                Title = "Close"
+            };
+            var result = await Electron.Dialog.ShowMessageBoxAsync(options);
+            if (result.Response == 0)
+            {
+                HandleSaveFile();
+                NavigationManager.NavigateTo("/");
+            } 
+            if (result.Response == 2)
+            {
+                NavigationManager.NavigateTo("/");
+            }
         }
-        private async void HandleSaveFile()
+        private void HandleSaveFile()
         {
             string jsonString = JsonSerializer.Serialize(
                 new
@@ -23,8 +53,7 @@ namespace TextEditor.Pages.EmptyData
                     saved_uploaded_files = context.saved_uploaded_files,
                     Documentations = context.Documentations
                 }, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText($"{context.FullFolderPath}/{context.FolderName}.fv", jsonString);
-
+            File.WriteAllText(context.SavedFile, jsonString);
         }
     }
 }

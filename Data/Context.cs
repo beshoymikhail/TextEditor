@@ -6,7 +6,7 @@ namespace TextEditor.Data
 {
     public class Context
     {
-        public string Introduction { get; set; }
+        public string? Introduction { get; set; }
         public List<Structure> structures { get; set; } = new List<Structure>();
         public IDictionary<DocumentationType, Documentation> Documentations { get; set; } = new Dictionary<DocumentationType, Documentation>
         {
@@ -21,8 +21,8 @@ namespace TextEditor.Data
            { { "auxiliaryfile",new List<IBrowserFile>() }, { "implementationfile", new List < IBrowserFile>() }, { "specificationfile", new List < IBrowserFile>() } };
          public IDictionary<string, List<string>> saved_uploaded_files { get; set; } = new Dictionary<string, List<string>>
            { { "auxiliaryfile",new List<string>() }, { "implementationfile", new List < string>() }, { "specificationfile", new List < string>() } };
-        public string FolderPath { get; set; } = "";
-        public string FolderName { get; set; } = "";
+        public string FolderPath { get; set; } = string.Empty;
+        public string FolderName { get; set; } = string.Empty;
         public string FullFolderPath
         {
             get
@@ -30,7 +30,8 @@ namespace TextEditor.Data
                 return Path.Combine(FolderPath, FolderName);
             }
         }
-        public string SavingFileDateTime { get; set; }
+        public string? SavingFileDateTime { get; set; }
         public bool IsEditable { get; set; } = true;
+        public string? SavedFile { get; set; }
     }
 }

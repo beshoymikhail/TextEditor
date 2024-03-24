@@ -48,7 +48,7 @@
     [Parameter]
     public DocumentationType _documentationType { get; set; }
     [Parameter]
-    public string _documentCardTitle { get; set; }
+    public string? _documentCardTitle { get; set; }
     async Task DeleteItemAsync(Structure structure)
     {
         var options = new MessageBoxOptions("Do you want delete this question?")

@@ -8,7 +8,7 @@ namespace TextEditor.Services
     {
         private static int count { get; set; } = 1;
 
-        public async Task CreatingSavedFile(string folderPath, string folderName)
+        public async Task<string> CreatingSavedFile(string folderPath, string folderName)
         {
             string fileName = folderName + ".fv";
             string filePath = Path.Combine(folderPath, fileName);
@@ -25,6 +25,7 @@ namespace TextEditor.Services
                 }
 
             }
+            return filePath;
         }
         public async Task<List<string>> CopyFileToFolder(List<IBrowserFile> files, string folderPath)
         {

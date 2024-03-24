@@ -11,7 +11,7 @@ namespace TextEditor.Pages.EmptyData
         public DocumentationType _documentaionType;
         public List<string> TabList { get; set; } = new List<string> { "" };
         public List<StructureType> Panels { get; set; } = new List<StructureType>();
-        public Structure selected_structure_to_insert { get; set; }
+        public Structure selected_structure_to_insert { get; set; } = new Structure();
         public int shownStructureInScreenID { get; set; } = 0;
         public List<Structure> StructureInPanels { get; set; } = new List<Structure>();
         public List<Structure> ChoosenStructures { get; set; } = new List<Structure>();
@@ -27,7 +27,7 @@ namespace TextEditor.Pages.EmptyData
         {
             if (firstRender)
             {
-                selected_structure_to_insert = null;
+                selected_structure_to_insert = new Structure();
                 _documentaionType = (DocumentationType)int.Parse(NavigationManager.Uri.Split("=")[1]);
                 TabList = HelperMethods.GetTabList(_documentaionType);
                 Panels = HelperMethods.GetStructureType(_documentaionType, TabList[0]);
@@ -55,7 +55,7 @@ namespace TextEditor.Pages.EmptyData
         }
         private void HandleShownStructureClickedInScreen(int StructureId)
         {
-            shownStructureInScreenID =(int)(ChoosenStructures?.FirstOrDefault(cf => cf.Id == StructureId).Id);
+            shownStructureInScreenID = (int)(ChoosenStructures?.FirstOrDefault(cf => cf.Id == StructureId).Id);
             StateHasChanged();
         }
         private void HandleBtnSaveAndAddStructures()
