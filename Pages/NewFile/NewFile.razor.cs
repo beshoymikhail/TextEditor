@@ -39,7 +39,7 @@ namespace TextEditor.Pages.NewFile
                     context.saved_uploaded_files["implementationfile"] = await fileServices.CopyFileToFolder(context.uploaded_files["implementationfile"], context.FullFolderPath);
                     context.saved_uploaded_files["specificationfile"] = await fileServices.CopyFileToFolder(context.uploaded_files["specificationfile"], context.FullFolderPath);
                     context.SavedFile = await fileServices.CreatingSavedFile(context.FullFolderPath, context.FolderName);
-                    context.CreationDateTime = DateTime.Now;
+                    context.CreationDateTime = DateTime.Now.ToString("dd MMM, yyyy");
                     context.structures = await fileServices.ExtractFile(context.saved_uploaded_files["auxiliaryfile"], SourceFile.Auxiliary, context.FullFolderPath);
                     context.structures.AddRange(await fileServices.ExtractFile(context.saved_uploaded_files["implementationfile"], SourceFile.Implementation, context.FullFolderPath));
                     context.structures.AddRange(await fileServices.ExtractFile(context.saved_uploaded_files["specificationfile"], SourceFile.Specification, context.FullFolderPath));

@@ -64,14 +64,14 @@
                 </button>
             </div>
             <div>
-                @if (context.SavingFileDateTime != null)
+                @if (context.EditingFileDateTime!=string.Empty)
                 {
                     <p class="p-date">
-                        Edited: @context.SavingFileDateTime.ToString("dd MMM, yyyy")
+                        Edited: @context.EditingFileDateTime
                     </p>
                 }
                 <p class="p-date">
-                    Created: @context.CreationDateTime.ToString("dd MMM, yyyy")
+                    Created: @context.CreationDateTime
                 </p>
             </div>
         </div>
@@ -113,7 +113,7 @@
                             </h6>
                             @if (context.IsEditable)
                             {
-                                <button class="btn-add-data btn" id="btn-introduction">
+                                <button class="btn-add-data btn" id="btn-introduction" onclick="$('#introduction-text').focus()">
                                     @if (string.IsNullOrEmpty(context.Introduction))
                                     {
                                         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
@@ -133,7 +133,7 @@
                             }
                         </div>
                         <div>
-                            <textarea type="text" class="descriptivelanguage-input form-control" placeholder="Click here to add text" @bind=context.Introduction />
+                            <textarea id="introduction-text" type="text" class="descriptivelanguage-input form-control" placeholder="Click here to add text" @bind=context.Introduction />
                         </div>
                     </div>
                     <DocumentCard _documentationType=DocumentationType.DataTypes _documentCardTitle="2.Data Types"></DocumentCard>

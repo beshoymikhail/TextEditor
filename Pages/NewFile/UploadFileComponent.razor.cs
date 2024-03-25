@@ -10,12 +10,12 @@ namespace TextEditor.Pages.NewFile
         [Parameter]
         public string? Id { get; set; }
         [Parameter]
-        public string input_id { get; set; }
+        public string input_id { get; set; } = "";
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-                context.uploaded_files[input_id] = new  List<IBrowserFile>();
+                context.uploaded_files[input_id] = new List<IBrowserFile>();
             }
 
         }

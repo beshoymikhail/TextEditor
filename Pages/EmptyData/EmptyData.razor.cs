@@ -45,12 +45,13 @@ namespace TextEditor.Pages.EmptyData
         }
         private void HandleSaveFile()
         {
+            context.EditingFileDateTime = DateTime.Now.ToString("dd MMM, yyyy");
             string jsonString = JsonSerializer.Serialize(
                 new
                 {
                     Introduction = context.Introduction,
                     CreationDateTime=context.CreationDateTime,
-                    SavingFileDateTime = DateTime.Now,
+                    EditingFileDateTime = context.EditingFileDateTime,
                     saved_uploaded_files = context.saved_uploaded_files,
                     Documentations = context.Documentations
                 }, new JsonSerializerOptions { WriteIndented = true });

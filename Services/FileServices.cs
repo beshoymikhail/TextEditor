@@ -97,7 +97,6 @@ namespace TextEditor.Services
             foreach (var function in functions)
             {
                 string FunName = function.Split("Lemma")[1].Split("\n")[0];
-                string description = "";
                 string[] parts = FunName.Split(":");
                 if (Regex.IsMatch(FunName, @"\b\w+\b\s*{[^{}]+}\s*\([^()]+\)\s*\([^()]+\)\s*\w*(?:\s*\w+)?"))
                 {
@@ -145,7 +144,7 @@ namespace TextEditor.Services
             return Structures;
         }
 
-        public async Task<string> ReadFileAsString(string FilePath)
+        public string ReadFileAsString(string FilePath)
         {
             if (File.Exists(FilePath))
             {

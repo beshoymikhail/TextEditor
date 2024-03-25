@@ -56,30 +56,30 @@
             </div>
         </div>
         <div class="col row mt-2 AddingDataBody me-4">
-            @if (shownStructureInScreenID != 0)
+            @if (shownStructureInScreen != null)
             {
                 <div>
                     <h6>A. Descriptive language, abstraction level 0: pure natural language</h6>
                     <input type="text" class="descriptivelanguage-input form-control" placeholder="Click here to add text"
-                       @bind=@(ChoosenStructures.FirstOrDefault(s=>s.Id==shownStructureInScreenID).DescriptivePureLanguage) />
+                       @bind=@(shownStructureInScreen.DescriptivePureLanguage) />
                 </div>
                 <div class="mt-3">
                     <h6>B. Descriptive language, abstraction level 1: hybrid</h6>
                     <input type="text" class="descriptivelanguage-input form-control" placeholder="Click here to add text"
-                       @bind=@ChoosenStructures.FirstOrDefault(s=>s.Id==shownStructureInScreenID).DescriptiveHybridLanguage />
+                       @bind=@shownStructureInScreen.DescriptiveHybridLanguage />
                 </div>
                 <div class="my-3">
                     <h6>C. Descriptive language, abstraction level 2: mathematical language</h6>
                     <input type="text" class="descriptivelanguage-input form-control" placeholder="Click here to add text"
-                       @bind=@ChoosenStructures.FirstOrDefault(s=>s.Id==shownStructureInScreenID).DescriptiveMathematicalLanguage />
+                       @bind=shownStructureInScreen.DescriptiveMathematicalLanguage />
                 </div>
                 <hr />
                 <div class="fs-6 fw-bold">
-                    <span class="text-danger">@ChoosenStructures.Where(s=>s.Id==shownStructureInScreenID).FirstOrDefault().StructureType.ToString()</span>
-                    @(@ChoosenStructures.FirstOrDefault(s => s.Id == shownStructureInScreenID).Name + " : ")
+                    <span class="text-danger">@shownStructureInScreen.StructureType.ToString()</span>
+                    @(@shownStructureInScreen.Name + " : ")
                     <br />
                     <pre>
-                        @ChoosenStructures.FirstOrDefault(s=>s.Id==shownStructureInScreenID).Description
+                        @shownStructureInScreen.Description
                                                     </pre>
                 </div>
             }

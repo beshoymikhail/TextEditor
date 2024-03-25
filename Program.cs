@@ -1,4 +1,5 @@
 using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using TextEditor.Data;
@@ -18,7 +19,11 @@ if (HybridSupport.IsElectronActive)
     // Open the Electron-Window here
     _ = Task.Run(async () =>
     {
-        var window = await Electron.WindowManager.CreateWindowAsync();
+        BrowserWindowOptions browserWindowOptions= new BrowserWindowOptions();
+        browserWindowOptions.Title = "Formal Vindications";
+        browserWindowOptions.Icon = "wwwroot/icon.ico";
+        
+        var window = await Electron.WindowManager.CreateWindowAsync(browserWindowOptions);
         window.OnClosed += () =>
         {
             Electron.App.Quit();

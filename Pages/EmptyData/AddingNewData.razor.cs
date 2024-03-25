@@ -11,8 +11,8 @@ namespace TextEditor.Pages.EmptyData
         public DocumentationType _documentaionType;
         public List<string> TabList { get; set; } = new List<string> { "" };
         public List<StructureType> Panels { get; set; } = new List<StructureType>();
-        public Structure selected_structure_to_insert { get; set; } 
-        public int shownStructureInScreenID { get; set; } = 0;
+        public Structure selected_structure_to_insert { get; set; }
+        public Structure shownStructureInScreen { get; set; } = null;
         public List<Structure> StructureInPanels { get; set; } = new List<Structure>();
         public List<Structure> ChoosenStructures { get; set; } = new List<Structure>();
         public List<Structure> NewSelectedStructures { get; set; } = new List<Structure>();
@@ -33,7 +33,7 @@ namespace TextEditor.Pages.EmptyData
                 Panels = HelperMethods.GetStructureType(_documentaionType, TabList[0]);
                 var sourcefiles = HelperMethods.GetSourceFiles(_documentaionType, TabList[0]);
                 StructureInPanels = context.structures.Where(f => sourcefiles.Contains(f.sourceFile) && Panels.Contains(f.StructureType)).ToList();
-                ChoosenStructures = new List<Structure> (context.Documentations[_documentaionType].DocumentationStructures);
+                ChoosenStructures = new List<Structure>(context.Documentations[_documentaionType].DocumentationStructures);
                 StateHasChanged();
             }
         }
@@ -55,7 +55,7 @@ namespace TextEditor.Pages.EmptyData
         }
         private void HandleShownStructureClickedInScreen(int StructureId)
         {
-            shownStructureInScreenID = (int)(ChoosenStructures?.FirstOrDefault(cf => cf.Id == StructureId).Id);
+            shownStructureInScreen = ChoosenStructures?.FirstOrDefault(cf => cf.Id == StructureId);
             StateHasChanged();
         }
         private void HandleBtnSaveAndAddStructures()
@@ -67,7 +67,7 @@ namespace TextEditor.Pages.EmptyData
         {
             ChoosenStructures = new List<Structure>(context.Documentations[_documentaionType].DocumentationStructures);
             NewSelectedStructures.Clear();
-            shownStructureInScreenID = 0;
+            shownStructureInScreen = null;
         }
         async Task DeleteItemAsync(Structure selectedStructure)
         {
@@ -82,7 +82,7 @@ namespace TextEditor.Pages.EmptyData
             {
                 ChoosenStructures.Remove(selectedStructure);
                 NewSelectedStructures.Remove(selectedStructure);
-                shownStructureInScreenID = 0;
+                shownStructureInScreen = null;
             }
         }
         public async Task DeleteAllFunctionsAsync()
@@ -98,7 +98,7 @@ namespace TextEditor.Pages.EmptyData
             {
                 ChoosenStructures?.Clear();
                 NewSelectedStructures?.Clear();
-                shownStructureInScreenID = 0;
+                shownStructureInScreen = null;
             }
         }
         private void HandleTabListChange(int tablLlistId)
