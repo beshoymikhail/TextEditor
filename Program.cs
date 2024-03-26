@@ -21,7 +21,7 @@ if (HybridSupport.IsElectronActive)
     {
         BrowserWindowOptions browserWindowOptions= new BrowserWindowOptions();
         browserWindowOptions.Title = "Formal Vindications";
-        browserWindowOptions.Icon = "wwwroot/icon.ico";
+        browserWindowOptions.Icon = "FV-icon.ico";
         
         var window = await Electron.WindowManager.CreateWindowAsync(browserWindowOptions);
         window.OnClosed += () =>

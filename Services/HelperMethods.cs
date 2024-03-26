@@ -36,7 +36,7 @@ namespace TextEditor.Services
             {
                 return new List<StructureType>
                 {
-                    StructureType.Lemma, StructureType.Theorems,StructureType.Fact, StructureType.Remark, StructureType.Corollary, StructureType.Proposition,StructureType.Properties
+                    StructureType.Lemma, StructureType.Theorems,StructureType.Fact, StructureType.Remark, StructureType.Corollary, StructureType.Proposition,StructureType.Property
                 };
             }
             return new List<StructureType>();

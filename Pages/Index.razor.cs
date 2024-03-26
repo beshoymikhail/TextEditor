@@ -19,6 +19,24 @@ namespace TextEditor.Pages
             context.uploaded_files["specificationfile"] = new List<IBrowserFile>();
             context.FolderName = "";
             context.FolderPath = "";
+            context.Documentations = new Dictionary<DocumentationType, Documentation>
+            {
+                    { DocumentationType.DataTypes,new Documentation(){DocumentationText="",DocumentationStructures=new List<Structure>()} },
+                    { DocumentationType.AdmittedLemmas,new Documentation(){DocumentationText="",DocumentationStructures=new List<Structure>()} },
+                    { DocumentationType.MainFunctions,new Documentation(){DocumentationText="",DocumentationStructures=new List<Structure>()} },
+                    { DocumentationType.SupportFunctions,new Documentation(){DocumentationText="",DocumentationStructures=new List<Structure>()} },
+                    { DocumentationType.AuxiliaryFunctions,new Documentation(){DocumentationText="",DocumentationStructures=new List<Structure>()} },
+                    { DocumentationType.OtherRelevantFunctions,new Documentation(){DocumentationText="",DocumentationStructures=new List<Structure>()} },
+            };
+            context.saved_uploaded_files = new Dictionary<string, List<string>>{
+                { "auxiliaryfile",new List<string>() },
+                { "implementationfile", new List < string>() },
+                { "specificationfile", new List < string>() }
+            };
+            context.Introduction = string.Empty;
+            context.IsEditable = true;
+            context.CreationDateTime = string.Empty;
+            context.EditingFileDateTime = string.Empty;
         }
         private async Task HandleLearnMoreButton()
         {

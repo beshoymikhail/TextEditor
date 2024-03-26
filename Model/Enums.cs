@@ -33,12 +33,12 @@ namespace TextEditor.Model
         ProgramDefinition,
         [Display("Program Fixpoint")]
         ProgramFixpoint,
-        Theorems,
+        Theorem,
         Fact,
         Remark,
         Corollary,
         Proposition,
-        Properties,
+        Property,
         Canonical
     }
     public enum SourceFile
