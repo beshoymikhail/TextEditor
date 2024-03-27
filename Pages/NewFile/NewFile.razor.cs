@@ -33,6 +33,7 @@ namespace TextEditor.Pages.NewFile
         {
             try
             {
+                context.FolderPath = @"D:\TextEditor";
                 if (IsEnabled && !string.IsNullOrEmpty(context.FolderName) && !string.IsNullOrEmpty(context.FolderPath))
                 {
                     context.saved_uploaded_files["auxiliaryfile"] = await fileServices.CopyFileToFolder(context.uploaded_files["auxiliaryfile"], context.FullFolderPath);

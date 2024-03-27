@@ -30,17 +30,24 @@ namespace TextEditor.Services
         public async Task<List<string>> CopyFileToFolder(List<IBrowserFile> files, string folderPath)
         {
             List<string> result = new List<string>();
-            if (!Directory.Exists(folderPath))
+            try
             {
-                Directory.CreateDirectory(folderPath);
-            }
-            foreach (var file in files)
-            {
-                using (var fileStream = new FileStream(Path.Combine(folderPath, file.Name), FileMode.Create))
+                if (!Directory.Exists(folderPath))
                 {
-                    await file.OpenReadStream().CopyToAsync(fileStream);
-                    result.Add(file.Name);
+                    Directory.CreateDirectory(folderPath);
                 }
+                foreach (var file in files)
+                {
+                    using (var fileStream = new FileStream(Path.Combine(folderPath, file.Name), FileMode.Create))
+                    {
+                        await file.OpenReadStream().CopyToAsync(fileStream);
+                        result.Add(file.Name);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             return result;
         }
@@ -100,7 +107,7 @@ namespace TextEditor.Services
             if (Canonicals.Count() > 0)
             {
                 functions.AddRange(GetStructuresEndWithDotAndEqual(Canonicals, sourceFile, StructureType.Canonical));
-            } 
+            }
             //Getting Classes
             var Classes = lines.Where(l => l.StartsWith(StructureType.Class.GetDisplayName())).ToList();
             if (Classes.Count() > 0)
@@ -117,37 +124,37 @@ namespace TextEditor.Services
             var Theorems = lines.Where(l => l.StartsWith(StructureType.Theorem.GetDisplayName())).ToList();
             if (Theorems.Count() > 0)
             {
-                functions.AddRange(GetTheorem(Theorems, sourceFile, StructureType.Theorem));
+                functions.AddRange(GetStructureEndWithTwoDots(Theorems, sourceFile, StructureType.Theorem));
             }
             //Getting Facts 
             var Facts = lines.Where(l => l.StartsWith(StructureType.Fact.GetDisplayName())).ToList();
             if (Facts.Count() > 0)
             {
-                functions.AddRange(GetFacts(Facts, sourceFile, StructureType.Fact));
+                functions.AddRange(GetStructureEndWithTwoDots(Facts, sourceFile, StructureType.Fact));
             }
             //Getting Remarks 
             var Remarks = lines.Where(l => l.StartsWith(StructureType.Remark.GetDisplayName())).ToList();
             if (Remarks.Count() > 0)
             {
-                functions.AddRange(GetRemarks(Remarks, sourceFile, StructureType.Remark));
+                functions.AddRange(GetStructureEndWithTwoDots(Remarks, sourceFile, StructureType.Remark));
             }
             //Getting Corollaries
             var Corollaries = lines.Where(l => l.StartsWith(StructureType.Corollary.GetDisplayName())).ToList();
             if (Corollaries.Count() > 0)
             {
-                functions.AddRange(GetCorollaries(Corollaries, sourceFile, StructureType.Corollary));
+                functions.AddRange(GetStructureEndWithTwoDots(Corollaries, sourceFile, StructureType.Corollary));
             }
             //Getting Propositions 
             var Propositions = lines.Where(l => l.StartsWith(StructureType.Proposition.GetDisplayName())).ToList();
             if (Propositions.Count() > 0)
             {
-                functions.AddRange(GetPropositions(Propositions, sourceFile, StructureType.Proposition));
+                functions.AddRange(GetStructureEndWithTwoDots(Propositions, sourceFile, StructureType.Proposition));
             }
             //Getting Properties Waiting
             var Properties = lines.Where(l => l.StartsWith(StructureType.Property.GetDisplayName())).ToList();
             if (Properties.Count() > 0)
             {
-                functions.AddRange(GetProperties(Properties, sourceFile, StructureType.Property));
+                functions.AddRange(GetStructureEndWithTwoDots(Properties, sourceFile, StructureType.Property));
             }
             return functions;
         }
@@ -189,13 +196,13 @@ namespace TextEditor.Services
             var Structures = new List<Structure>();
             foreach (var structure in structures)
             {
-                string[] Funparts = structure.Split(StructureType.ToString())[1].Split(":=");
+                string[] Funparts = structure.Split(StructureType.GetDisplayName())[1].Split(":=");
                 Structures.Add(
                     new Structure()
                     {
                         Id = count,
                         Name = Funparts[0],
-                        Description = Funparts[1].Substring(2).Trim(),
+                        Description = Funparts[1].Trim(),
                         sourceFile = sourceFile,
                         StructureType = StructureType
                     });
@@ -203,75 +210,18 @@ namespace TextEditor.Services
             }
             return Structures;
         }
-        private List<Structure> GetFacts(List<string> structures, SourceFile sourceFile, StructureType StructureType)
+        private List<Structure> GetStructureEndWithTwoDots(List<string> structures, SourceFile sourceFile, StructureType StructureType)
         {
             var Structures = new List<Structure>();
             foreach (var structure in structures)
             {
-                string[] Funparts = structure.Split(StructureType.ToString())[1].Split(": nat");
+                string funName = structure.Split(StructureType.GetDisplayName() + " ")[1].Split(" ")[0];
                 Structures.Add(
                     new Structure()
                     {
                         Id = count,
-                        Name = Funparts[0],
-                        Description = "nat" + Funparts[1].Substring(2).Trim(),
-                        sourceFile = sourceFile,
-                        StructureType = StructureType
-                    });
-                count++;
-            }
-            return Structures;
-        } 
-        private List<Structure> GetTheorem(List<string> structures, SourceFile sourceFile, StructureType StructureType)
-        {
-            var Structures = new List<Structure>();
-            foreach (var structure in structures)
-            {
-                string[] Funparts = structure.Split(StructureType.ToString())[1].Split(": nat");
-                Structures.Add(
-                    new Structure()
-                    {
-                        Id = count,
-                        Name = Funparts[0],
-                        Description = "nat" + Funparts[1].Substring(2).Trim(),
-                        sourceFile = sourceFile,
-                        StructureType = StructureType
-                    });
-                count++;
-            }
-            return Structures;
-        } 
-        private List<Structure> GetRemarks(List<string> structures, SourceFile sourceFile, StructureType StructureType)
-        {
-            var Structures = new List<Structure>();
-            foreach (var structure in structures)
-            {
-                string[] Funparts = structure.Split(StructureType.ToString())[1].Split(": Type");
-                Structures.Add(
-                    new Structure()
-                    {
-                        Id = count,
-                        Name = Funparts[0],
-                        Description =  "Type"+ Funparts[1].Substring(2).Trim(),
-                        sourceFile = sourceFile,
-                        StructureType = StructureType
-                    });
-                count++;
-            }
-            return Structures;
-        }  
-        private List<Structure> GetCorollaries(List<string> structures, SourceFile sourceFile, StructureType StructureType)
-        {
-            var Structures = new List<Structure>();
-            foreach (var structure in structures)
-            {
-                string[] Funparts = structure.Split(StructureType.ToString())[1].Split(": Type");
-                Structures.Add(
-                    new Structure()
-                    {
-                        Id = count,
-                        Name = Funparts[0],
-                        Description =  "Type"+ Funparts[1].Substring(2).Trim(),
+                        Name = funName,
+                        Description = structure.Split($"{StructureType.ToString()} {funName} ")[1],
                         sourceFile = sourceFile,
                         StructureType = StructureType
                     });
@@ -279,45 +229,6 @@ namespace TextEditor.Services
             }
             return Structures;
         }
-         private List<Structure> GetPropositions(List<string> structures, SourceFile sourceFile, StructureType StructureType)
-        {
-            var Structures = new List<Structure>();
-            foreach (var structure in structures)
-            {
-                string[] Funparts = structure.Split(StructureType.ToString())[1].Split(": Type");
-                Structures.Add(
-                    new Structure()
-                    {
-                        Id = count,
-                        Name = Funparts[0],
-                        Description =  "Type"+ Funparts[1].Substring(2).Trim(),
-                        sourceFile = sourceFile,
-                        StructureType = StructureType
-                    });
-                count++;
-            }
-            return Structures;
-        } 
-        private List<Structure> GetProperties(List<string> structures, SourceFile sourceFile, StructureType StructureType)
-        {
-            var Structures = new List<Structure>();
-            foreach (var structure in structures)
-            {
-                string[] Funparts = structure.Split(StructureType.ToString())[1].Split(": Type");
-                Structures.Add(
-                    new Structure()
-                    {
-                        Id = count,
-                        Name = Funparts[0],
-                        Description =  "Type"+ Funparts[1].Substring(2).Trim(),
-                        sourceFile = sourceFile,
-                        StructureType = StructureType
-                    });
-                count++;
-            }
-            return Structures;
-        }
-
         public string ReadFileAsString(string FilePath)
         {
             if (File.Exists(FilePath))
